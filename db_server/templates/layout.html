@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<title>{{ title }}</title>
+<body>
+<!--
+{% block content %}
+ ここにメインコンテンツを書く 
+{% endblock %}-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+    function send_text(){
+        var text1 = 1
+
+        #FormData初期化
+        var fData = new FormData();
+
+        fData.append('userid', text1);
+
+        #ajax送信
+        $.ajax({
+            //配信元のhttpsサーバーに返す場合
+            url: '/datas',                            
+            //別サーバー（今回でいう画像処理サーバー）に返す場合
+            //url: 'https://192.168.0.100:12345/register',   
+            type: 'POST',
+            data: fData ,
+            contentType: false,
+            processData: false,
+            success: function(data, dataType) {
+                //非同期で通信成功時に読み出される [200 OK 時]
+                console.log('Success', data);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                //非同期で通信失敗時に読み出される
+                console.log('Error : ' + errorThrown);
+            }
+        });
+    }
+</script>
+</body>
+</head>
