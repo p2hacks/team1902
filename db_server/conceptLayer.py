@@ -54,6 +54,7 @@ def makeList(id, name, ids):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
         order = 'insert into myfriend (myid, listid, listname, friendid) values(?,?,?,?)'
+        ids = [str(i) for i in ids]
         idS = ','.join(ids)
         listid = c.execute('select max(listid) from myfriend where myid=?', (id,)).fetchone()[0]
         if listid==None: listid = 0
@@ -76,11 +77,11 @@ def getListData(id, listid):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
         datas = c.execute('select * from myfriend where myid=? and listid=?', (id, listid)).fetchone()
-        return {
-            "userID": datas[3].split(','),
+        return {"list": {
             "listName": datas[2],
-            "listID":datas[1]
-        }
+            "listID":datas[1],
+            "userID": datas[3].split(',')
+        }}
 
 def editList(id, listid, listname, friendid):
     with sqlite3.connect(dbname) as conn:
