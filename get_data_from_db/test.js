@@ -31,7 +31,7 @@ function loadTest(){
 function img_upload(){
     //フォームデータを取得
     var formdata = new FormData(document.getElementById("img_form"));
-    xhr.open('POST', HOST, true);
+    xhr.open('POST', HOST+'/image', true);
     xhr.send(formdata);    
 
     xhr.onreadystatechange = function() {

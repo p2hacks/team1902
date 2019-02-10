@@ -1,11 +1,12 @@
 #--*--utf-8--*--
 from flask import Flask, render_template, request
 from conceptLayer import *
-import sys
+import sys, os
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+app.config['UPLOAD_FOLDER'] = './prof_imgs'
 
 @app.route("/post", methods=['POST'])
 def getData():
@@ -20,7 +21,8 @@ def getjson():
 @app.route("/post/image", methods=['POST'])
 def getimg():
     img_file = request.files['prof_img']
-    return img_file
+    img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], "2.jpg"))
+    return "Hello"#img_file
 
 if __name__=='__main__':
     #外部 app.run(host='0.0.0.0', port=3000, threaded=True)
