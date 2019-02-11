@@ -5,17 +5,60 @@ import json
 
 dbname = 'sprout.db'
 
-#--------ユーザーデータ系---------
-def addUser(name, icon, intro, urls):
+#--------セッション系---------
+sessID = {0:"error"}
+def makeSessID(id):
+    if min(sessID) not in {0,1}:
+        sessID[min(sessID)-1] = id
+        return min(sessID)
+    else:
+        sessID[max(sessID)+1] = id
+        return max(sessID)
+
+def delSessID(id):
+    del sessID[id]
+
+def sessToUser(id):
+    try:
+        return sessID[id]
+    except:
+        return sessID[0]
+
+#--------アカウントデータ系---------
+def makeAC(name, hpass):
     '''
     idをどう指定したら良いかわからん
     1, 2作成後1削除すると次作られるのは3
     '''
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
+        order = 'insert into log (name, pass) values (?,?)'
+        c.execute(order, (name, hpass))
+        conn.commit()
+
+def checkAC(name, hpass):
+    with sqlite3.connect(dbname) as conn:
+        c = conn.cursor()
+        order = 'select id from log where name=? and pass=?'
+        try:
+            return c.execute(order, (name, hpass)).fetchone()[0]
+        except:
+            return 0
+
+def delAC(id):
+    with sqlite3.connect(dbname) as conn:
+        c = conn.cursor()
+        order = 'delete from log where id=?'
+        c.execute(order, (id,))
+        conn.commit()
+
+#--------ユーザーデータ系---------
+def addUser(id, name, icon, intro, urls):
+    with sqlite3.connect(dbname) as conn:
+        c = conn.cursor()
         urlLine = ','.join(urls)
-        order = 'insert into selfData (name, icon, intro, urls) values (?,?,?,?)'
-        c.execute(order, (name, icon, intro, urlLine))
+        order = 'insert into selfData (id, name, icon, intro, urls) values (?,?,?,?,?)'
+        c.execute(order, (id,name, icon, intro, urlLine))
         conn.commit()
 
 def delUser(id):
@@ -102,4 +145,6 @@ if __name__=='__main__':
     #print(getListID(1))
     #print(getListData(1, 1))
     #editList(1, 1, "hogehoge", ["12", "15"])
-    #delList(1, 2)'''
+    #delList(1, 2)
+    #delAC(1)
+    '''
