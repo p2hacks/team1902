@@ -402,6 +402,13 @@ a:active {	color: #ff8000; }
 	width: 100%;
 }
 
+.login_info2 {
+	color: var(--textColor2);
+	font-weight: 700;
+	font-size: 18px;
+	width: 100%;
+}
+
 .login_input {
 	width: 100%;
 	font: 15px/24px sans-serif;
@@ -416,4 +423,9 @@ a:active {	color: #ff8000; }
 .login_input:focus {
 	border-bottom: 2px solid var(--borderColor);
 	outline: none;
+}
+
+.logo_base {
+	height: 30%;
+	position: relative;
 }
