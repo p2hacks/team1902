@@ -47,6 +47,47 @@ function sendjson(requestData, callback){
     };
 }
 
+function controle_image(method, sessID, imagefile) {
+    //試してないです
+    //画像をget, updateさせる関数です
+    xhr.open('POST', HOST+'/image', true);
+    var formdata = new FormData();
+    if(method=='get'){
+        xhr.onload = function() {
+            var oURL = URL.createObjectURL(this.response);
+            var image = new Image();
+            image.onload = function() {
+                URL.revokeObjectURL(oURL);
+            };
+            image.src = oURL;
+            image.height = 60;
+            //idに対してimageを付ける
+            var tagg = document.getElementById("images");
+            tagg.appendChild(image)
+        };
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        //返答の仕方を設定
+        xhr.responseType = 'blob';
+        formdata.append('method', 'update')
+        formdata.append('sessID', sessID)
+        xhr.send(formdata)
+
+    }else if(method=='update'){
+        formdata.append(imagefile);
+        formdata.append('method', 'update');
+        //formdataに対して"sessID=?"を追加
+        formdata.append("sessID", sessID);
+        xhr.send(formdata);
+
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
+                //今回成功時nullを返す
+                console.log(this.response);
+            }
+        };
+    }
+}
+
 function getImg(){
     // 画像を取得し、表示させる関数になってます
     xhr.open('POST', HOST+'/Gimage', true);

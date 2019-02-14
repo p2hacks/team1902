@@ -1,4 +1,5 @@
 #--*--utf-8--*--
+# このファイルを起動すればサーバーが立ち上がります
 from flask import Flask, request, send_from_directory
 from conceptLayer import *
 from outlayer import *
@@ -54,18 +55,19 @@ def getjson():
 
 @app.route("/post/image", methods=['POST'])
 def getimg():
-    user_id = request.form['sessID'] #sessToUser(request.form['sessID'])
-    if user_id=='error':
-        return 'sessID error'
-    img_file = request.files['prof_img']
-    img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg"))
-    return None
-    
-@app.route("/post/Gimage", methods=['POST'])
-def sendimg():
-    #userid = sessToUser(request.form['sessID'])
-    userid = 2
-    return send_from_directory(app.config['UPLOAD_FOLDER'], str(userid)+".jpg")
+    if request.form['method']=='update':
+        user_id = sessToUser(request.form['sessID'])
+        if user_id=='error':
+            return 'sessID error'
+        img_file = request.files['prof_img']
+        img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg"))
+        return None
+
+    elif request.form['method']=='get':
+        user_id = sessToUser(request.form['sessID'])
+        if user_id=='error':
+            return 'sessID error'
+        return send_from_directory(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg")
 
 if __name__=='__main__':
     #外部 app.run(host='0.0.0.0', port=3000, threaded=True)
