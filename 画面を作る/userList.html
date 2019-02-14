@@ -2,9 +2,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>Sprout</title>
+	<link rel="shortcut icon"type="image/png" href="./img/icon.png">
 	<link rel="stylesheet" href="./css/base.css" type="text/css">
 	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
 	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<script type="text/javascript" src="./js/userList.js"></script>
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -59,7 +62,7 @@
 		</div>		
 		<div class="cardList_card">
 			<img class="cardList_Icon" src="./img/010.jpg">
-			<div class="cardList_name">割といい感じ？</div>
+			<div class="cardList_name">長い文字列の省略テストああああ</div>
 			<div class="cardList_id">ID:145</div>
 		</div>
 		<div class="cardList_card">
@@ -109,28 +112,18 @@
 		</div>
 	</div>
 	
-	<!-- リスト用の白い線（デザイン用） -->
-	<!-- <div class="cardList_line"></div> -->
-	
 	<!-- リスト名を表示する、リスト編集開始ボタンを配置する -->
 	<div class="userList_title">
-		<div class="backButton_text">←</div>
+		<a class="backButton_base" href="javascript:history.back()" target="_self">
+			<div class="backButton_text">←</div>
+		</a>
 		<div class="userList_titleText">リストタイトル</div>
 		<div class="userList_editButton">
-			<a class="button_Base1" href="javascript:history.back()" target="_self" style="width: 100%; top:4px;">
+			<a class="button_Base1" href="./" target="_self" style="width: 100%; top:4px;">
 				<div class="button_Text1">編集</div>
 			</a>
 		</div>
 	</div>
-	
-	<!-- 戻るボタンを表示する fixed配置：ボタン背景は多少明るく、できれば外側に影をつける -- >
-	<div style="height: 12px; width:100%;"></div>
-	<div style="height: 64px;"></div>
-	<div class="underButton_base">
-		<a class="button_Base1" href="javascript:history.back()" target="_self" style="width: 100%; bottom: 10px; box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);">
-			<div class="button_Text1">戻る</div>
-		</a>
-	</div> -->
 
 </body>
 </html>
