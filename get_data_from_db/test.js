@@ -3,25 +3,29 @@ var HOST = 'http://localhost:3000/post';
 
 function sendData(datas, callback) {
     // json形式のdatasを受け取り、callback関数に対して返します
+    //ホストマシンのjson通信に対して通信
     xhr.open('POST', HOST+'/json', true);
+    //通信可能形式にエンコード
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
+    //データを送る
     xhr.send(datas);
 
     //ハンドラ登録
     xhr.onreadystatechange = function() {
+        // 通信成功
         if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
+            //callbackのthisに対応させる
             callback.apply(xhr);
         }
     };
 }
 
 function sendNormal(){
-    // 一般的なdataを送る関数
+    // 一般的なdataを送る利用例(今回使う予定無し?)
     var requestData = "user=2";
     //呼び出す時データをどうするか設定する
     sendData(requestData, function() {
         var data = this.response;
-        data = JSON.parse(data)
         console.log(data);
         //document.getElementById("user").innerHTML = data["user"]["Name"];//catchData["user"]["Name"];    
     });
@@ -29,6 +33,7 @@ function sendNormal(){
 
 function sendjson(requestData, callback){
     //json送り、レスポンスをcallbackに返します
+    //なんかこれやらんと送れない
     requestData = JSON.stringify(requestData)
     
     xhr.open('POST', HOST+'/json', true);
@@ -57,8 +62,8 @@ function getImg(){
         tagg.appendChild(image)
     };
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
+    //返答の仕方を設定
     xhr.responseType = 'blob';
-    //xhr.send("sessID="+sessID);
     // 今回はnull送ってます
     xhr.send(null)
     console.log(xhr.response);
@@ -68,13 +73,14 @@ function sendImg(){
     // htmlで取得した画像データをサーバに送ります
     //フォームデータを取得
     var formdata = new FormData(document.getElementById("img_form"));
+    //formdataに対して"sessID=3"を追加
     formdata.append("sessID", 3)
     xhr.open('POST', HOST+'/image', true);
     xhr.send(formdata);
 
     xhr.onreadystatechange = function() {
         if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
-            //if get it, return null
+            //今回成功時nullを返す
             console.log(this.response);
         }
     };
