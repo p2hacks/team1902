@@ -16,7 +16,10 @@ def makeSessID(id):
         return max(sessID)
 
 def delSessID(id):
-    del sessID[id]
+    try:
+        del sessID[id]
+    except:
+        pass
 
 def sessToUser(id):
     try:
@@ -43,7 +46,16 @@ def checkAC(name, hpass):
         try:
             return c.execute(order, (name, hpass)).fetchone()[0]
         except:
-            return 0
+            return 'error'
+
+def searchAC(id):
+    with sqlite3.connect(dbname) as conn:
+        c = conn.cursor()
+        order = 'select * from log where id =?'
+        try:
+            return c.execute(order, id).fetchone()[0]
+        except:
+            return 'error'
 
 def delAC(id):
     with sqlite3.connect(dbname) as conn:
@@ -72,17 +84,20 @@ def getUser(id):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
         order = 'select * from selfData where id=?'
-        datas = c.execute(order, (id,)).fetchone()
-        dictdata = {
+        try:
+            datas = c.execute(order, (id,)).fetchone()
+            dictdata = {
             "user":{
                 "ID": datas[0],
                 "Name": datas[1],
                 "icon": datas[2],
                 "url": datas[4].split(','),
                 "profile": datas[3]
+                }
             }
-        }
-        return json.dumps(dictdata)
+            return json.dumps(dictdata)
+        except:
+            return 'error'
 
 def editUser(id, name, icon, profile, url):
     with sqlite3.connect(dbname) as conn:

@@ -43,7 +43,8 @@ def getjson():
             delList(sessToUser(data['send']['sessID']), data['send']['listID'])
 
     elif data['method']=='update':
-        pass
+        if data['want']=='user':
+            return data['send']['hoge']
 
     elif data['method']=='send':
         if data['want']=='post':
@@ -53,14 +54,18 @@ def getjson():
 
 @app.route("/post/image", methods=['POST'])
 def getimg():
+    user_id = request.form['sessID'] #sessToUser(request.form['sessID'])
+    if user_id=='error':
+        return 'sessID error'
     img_file = request.files['prof_img']
-    img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], "2.jpg"))
-    return "Hello"#img_file
-
+    img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg"))
+    return None
+    
 @app.route("/post/Gimage", methods=['POST'])
 def sendimg():
-    userid = sessToUser(request.form['sessID'])
-    return send_from_directory(app.config['UPLOAD_FOLDER'], userid+".jpg")
+    #userid = sessToUser(request.form['sessID'])
+    userid = 2
+    return send_from_directory(app.config['UPLOAD_FOLDER'], str(userid)+".jpg")
 
 if __name__=='__main__':
     #外部 app.run(host='0.0.0.0', port=3000, threaded=True)

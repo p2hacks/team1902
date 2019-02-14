@@ -2,6 +2,7 @@ var xhr = new XMLHttpRequest();
 var HOST = 'http://localhost:3000/post';
 
 function sendData(datas, callback) {
+    // json形式のdatasを受け取り、callback関数に対して返します
     xhr.open('POST', HOST+'/json', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
     xhr.send(datas);
@@ -15,6 +16,7 @@ function sendData(datas, callback) {
 }
 
 function sendNormal(){
+    // 一般的なdataを送る関数
     var requestData = "user=2";
     //呼び出す時データをどうするか設定する
     sendData(requestData, function() {
@@ -26,6 +28,7 @@ function sendNormal(){
 }
 
 function sendjson(requestData, callback){
+    //json送り、レスポンスをcallbackに返します
     requestData = JSON.stringify(requestData)
     
     xhr.open('POST', HOST+'/json', true);
@@ -39,28 +42,46 @@ function sendjson(requestData, callback){
     };
 }
 
-function getImg(sessID){
+function getImg(){
+    // 画像を取得し、表示させる関数になってます
     xhr.open('POST', HOST+'/Gimage', true);
+    xhr.onload = function() {
+        var oURL = URL.createObjectURL(this.response);
+        var image = new Image();
+        image.onload = function() {
+            URL.revokeObjectURL(oURL);
+        };
+        image.src = oURL;
+        image.height = 60;
+        var tagg = document.getElementById("images");
+        tagg.appendChild(image)
+    };
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
-    //xhr.responseType = "blob";
-    xhr.send("sessID="+sessID);
+    xhr.responseType = 'blob';
+    //xhr.send("sessID="+sessID);
+    // 今回はnull送ってます
+    xhr.send(null)
     console.log(xhr.response);
 }
 
 function sendImg(){
+    // htmlで取得した画像データをサーバに送ります
     //フォームデータを取得
     var formdata = new FormData(document.getElementById("img_form"));
+    formdata.append("sessID", 3)
     xhr.open('POST', HOST+'/image', true);
     xhr.send(formdata);
 
     xhr.onreadystatechange = function() {
         if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
-            console.log("sending the img was succses!");
+            //if get it, return null
+            console.log(this.response);
         }
     };
 }
 
 function controle() {
+    // jsonを送る関数利用の使用例
     var data = {"method":"get","want": "user","send":{"sessID": 1}};
     sendjson(data, function(){
         console.log(this.response);
