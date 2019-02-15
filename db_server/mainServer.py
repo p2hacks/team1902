@@ -56,12 +56,12 @@ def getjson():
 @app.route("/post/image", methods=['POST'])
 def getimg():
     if request.form['method']=='update':
-        user_id = sessToUser(request.form['sessID'])
+        user_id = request.form['sessID'] #sessToUser(request.form['sessID'])
         if user_id=='error':
             return 'sessID error'
         img_file = request.files['prof_img']
         img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg"))
-        return None
+        return 'done'
 
     elif request.form['method']=='get':
         user_id = sessToUser(request.form['sessID'])

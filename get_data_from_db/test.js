@@ -115,8 +115,8 @@ function sendImg(){
     //フォームデータを取得
     var formdata = new FormData(document.getElementById("img_form"));
     //formdataに対して"sessID=3"を追加
-    formdata.append("method", 'get')
-    formdata.append("sessID", 3)
+    formdata.append("method", 'update')
+    formdata.append("sessID", 2)
     xhr.open('POST', HOST+'/image', true);
     xhr.send(formdata);
 
@@ -127,6 +127,10 @@ function sendImg(){
         }
     };
 }
+/*
+function login(hpass, ) {
+    sendjson()
+}*/
 
 function controle() {
     // jsonを送る関数利用の使用例
