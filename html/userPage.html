@@ -1,0 +1,81 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sprout</title>
+	<link rel="shortcut icon"type="image/png" href="./img/icon.png">
+	<link rel="stylesheet" href="./css/base.css" type="text/css">
+	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
+	<!-- <script type="text/javascript" src="./js/main.js"></script> -->
+	<script type="text/javascript" src="./js/userPage.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="scroll">
+
+	<!-- 上部タブ用の高さを確保する -->
+	<div style="height: 64px; width:100%;"></div>
+	<div style="height: 12px; width:100%;"></div>
+	
+	<!-- 上に表示する（非固定）：すべてのページ -->
+
+	
+	<!-- アイコン、ユーザ名、ユーザID（みかん） -->
+	<img class="userPage_userIcon">
+	<div class="userPage_userName">ユーザーネーム</div>
+	<div class="userPage_userID">ID:145</div>
+	
+	<!-- URL（ul/li） -->
+	<ul class="userPage_listURL">
+		<a href="https://github.com/TomSuzuki" class="userPage_linkURL">https://github.com/TomSuzuki</a>
+		<a href="https://github.com/TomSuzuki" class="userPage_linkURL">https://github.com/TomSuzuki</a>
+	</ul>
+	
+	<!-- 自己紹介（pre） -->
+	<pre class="userPage_profile">
+自己紹介の文章
+改行ってbr？<br>
+brも使える感じか...？
+<small>他のタグは？</small>
+改行が...</pre>
+	
+	
+	<!-- 取得した日時場所の情報（取得済みなら） -->
+	
+	<!-- 取得ボタン（未取得なら） -->
+	
+	<!-- リスト表示ボタン（自分のページなら） -->
+	
+	<!-- 上部固定表示 -->
+	<div class="userList_title">
+		<!-- 戻るボタン（ログイン時かつ、自分のページでないときのみ表示（基本非表示）） -->
+		<a class="backButton_base" href="javascript:history.back()" target="_self" id="link_back" style="display: none;">
+			<div class="backButton_text">←</div>
+		</a>
+		
+		<!-- ユーザー名の表示？ -->
+		<!-- <div class="userList_titleText">リストタイトル</div>-->
+		
+		<!-- 新規登録/ログイン（未認証ユーザのみ表示） -->
+		<div class="head_linkBase" id="link_login"  style="display: none;"><a class="head_link" href="./welcome.html">ログイン／新規登録</a></div>
+		
+		<!-- リストに追加ボタン（取得済みなら） -->
+		<div class="userList_editButton" style="right: 30px; width: 40px; display: none;">
+			<a class="button_Base1" href="./" target="_self" style="width: 40px; top:4px; right: 0px;">
+				<div class="button_Text1">+</div>
+			</a>
+		</div>
+		
+		<!-- 設定ボタン（自分のページなら） -->
+		<div class="userList_editButton">
+			<a class="button_Base1" href="./userSetting.html" target="_self" style="width: 100%; top:4px; display: none;">
+				<div class="button_Text1">設定</div>
+			</a>
+		</div>
+		
+		
+		
+	</div>
+	
+</body>
+</html>
