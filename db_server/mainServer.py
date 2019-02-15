@@ -39,7 +39,7 @@ def getjson():
 
     elif data['method']=='delete':
         if data['want']=='user':
-            userDestroy(data['send']['sessID'])
+            return userDestroy(data['send']['sessID'])
         elif data['want']=='list':
             delList(sessToUser(data['send']['sessID']), data['send']['listID'])
 

@@ -127,18 +127,43 @@ function sendImg(){
         }
     };
 }
-/*
-function login(hpass, ) {
-    sendjson()
-}*/
 
-function controle() {
-    // jsonを送る関数利用の使用例
-    var data = {"method":"get","want": "user","send":{"sessID": 1}};
+function login(name, hpass) {
+    if(!name)name='tom';
+    if(!hpass)hpass='tom';
+    var data = {
+        'method':'get',
+        'want':'login',
+        'send':{'name':name, 'pass':hpass}
+    }
     sendjson(data, function(){
         console.log(this.response);
-    });
-    getImg(1)
+    })
+}
+
+function newAcount(name, hpass) {
+    if(!name)name='tom';
+    if(!hpass)hpass='tom';
+    var data = {
+        'method':'create',
+        'want':'user',
+        'send':{'name':name, 'pass':hpass}
+    }
+    sendjson(data, function(){
+        console.log('sessID = '+this.response);
+        userdelete(this.response);
+    })
+}
+
+function userdelete(sessID) {
+    var data = {
+        'method':'delete',
+        'want':'user',
+        'send':{'sessID':sessID}
+    }
+    sendjson(data, function(){
+        console.log(this.response);
+    })
 }
 
 /*// これやると状態が分かる
