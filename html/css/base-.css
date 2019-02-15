@@ -1,0 +1,192 @@
+.logo {
+	left: 50%;
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.loginButton_base {
+	display: flex;
+	flex-direction: row;
+	margin: 0px 60px;
+	max-width: 100%;
+	padding: 0px;
+}
+
+.underButton_base {
+	align-items: flex-end;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	bottom: 0px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	height: 64px;
+	position: fixed;
+	width: 100vw;
+}
+
+.button_Base1 {
+	background: var(--color_white);
+	border-radius: 20px;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base1:hover{
+	opacity: 0.6;
+}
+
+.button_Base2 {
+	border-color: var(--color_white);
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 2px;
+	box-sizing: border-box;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base2:hover{
+	opacity: 0.6;
+}
+
+.button_Text1 {
+	color: var(--color_green);
+	font-size: 16px;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.button_Text2 {
+	color: var(--color_white);
+	font-size: 16px;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.userList_title {
+	background: var(--color_green);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	display: flex;
+	height: 64px;
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+}
+
+.userList_titleText {
+	color: var(--color_white);
+	font-size: 18px;
+	font-weight: bold;
+	left: 54px;
+	position: fixed;
+	top: 20px;
+	width: 70%;
+}
+
+.backButton_base {
+	color: var(--color_white);
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	left: 20px;
+	opacity: 0.8;
+	position: fixed;
+	text-decoration: none;
+	top: 20px;
+}
+
+.backButton_text {
+	color: var(--color_white);
+	font-size: 16px;
+	font-weight: bold;
+	position: relative;
+	top: 2px;
+}
+
+.userList_editButton {
+	/* ここあとで変える */
+	position: fixed;
+	right: 20px;
+	top: 4px;
+	width: 20%;
+}
+
+.login_base {
+	left: 50%;
+	position: relative;
+	transform:translateX(-50%);
+	width: 70%;
+}
+
+.login_parent {
+	display: block;
+	margin-bottom: 30px;
+	width: 100vw;
+}
+
+.login_info {
+	color: var(--color_white);
+	font-size: 14px;
+	font-weight: normal;
+	width: 100%;
+}
+
+.login_info2 {
+	color: var(--color_white);
+	font-size: 18px;
+	font-weight: bold;
+	width: 100%;
+}
+
+.login_input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--color_white);
+	box-sizing: border-box;
+	color: var(--color_white);
+	font: 15px/24px sans-serif;
+	padding: 3px;
+	width: 100%;
+}
+
+.login_input:focus {
+	border-bottom: 2px solid var(--color_greenPale);
+	outline: none;
+}
+
+.logo_base {
+	height: 30%;
+	position: relative;
+}
+
+.newList_parent {
+	background: var(--color_green);
+	border-radius: 20px;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	width: 60%;
+}

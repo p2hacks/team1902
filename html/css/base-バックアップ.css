@@ -1,0 +1,440 @@
+:root {
+	/* テーマカラー */
+	--color_green: #008D56;
+	--color_white: #FAFAFA;
+	--color_greenDark: #004E2D;
+	--color_greenPale: #A2DBA8;
+}
+
+* {
+	font-family: "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
+	color: var(--textColor);
+}
+
+body {
+	background: var(--color_white);
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+a:link {	color: #0000FF; }
+a:visited {	color: #000080; }
+a:hover {	color: #FF0000; }
+a:active {	color: #FF8000; }
+
+.text_white {
+	color: var(--color_white);
+	font-size: 16px;
+	font-weight: normal;
+	margin: 40px 50px;
+}
+
+.login_body {
+	background: var(--color_green);
+}
+
+.selectList_base {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0px;
+	max-width: 100%;
+	padding: 2px;
+}
+
+.selectList_card {
+	border-color: var(--color_greenPale);
+	border-bottom-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
+	height: 38px;
+	margin: 4px 10px;
+	min-width: 320px;
+	position: relative;
+	width: 100%;
+}
+
+.selectList_cardName {
+	-o-text-overflow: ellipsis;
+	color: var(--color_greenDark);
+	font-size: 18px;
+	font-weight: bold;
+	left: 12px;
+	max-width: 95%;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 3px;
+	white-space: nowrap;
+}
+
+.cardList {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0px;
+	max-width: 100%;
+	padding: 2px;
+}
+
+.cardList_card {
+	border-color: var(--color_greenPale);
+	border-bottom-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
+	height: 64px;
+	margin: 4px 10px;
+	min-width: 320px;
+	position: relative;
+	width: 100%;
+}
+
+.cardList_Icon {
+	background: var(--color_green);
+	border-radius: 25px;
+	height: 50px;
+	margin: 5px 10px;
+	width: 50px;
+}
+
+.cardList_name {
+	-o-text-overflow: ellipsis;
+	color: var(--color_greenDark);
+	font-size: 22px;
+	font-weight: bold;
+	left: 72px;
+	max-width: 70%;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 6px;
+	white-space: nowrap;
+}
+
+.cardList_id {
+	color: var(--color_greenDark);
+	font-size: small;
+	font-weight: bold;
+	left: 72px;
+	position: absolute;
+	top: 38px;
+}
+
+.cardList_line {
+	background: var(--color_green);
+	border-color: var(--color_white);
+	border-right-style: solid;
+	border-width: 2px;
+	box-sizing: border-box;
+	height: 100%;
+	left: 0px;
+	position: fixed;
+	top: 0px;
+	width: 24px;
+}
+
+.buttonCharacter {
+	color: var(--subColor1);
+	font-size: 18px;
+	font-weight: bold;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.userPage_listURL {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+.userPage_linkURL {
+	-o-text-overflow: ellipsis;
+	margin: 2px 2px 0px 2px;
+	overflow: hidden;
+	padding: 3px 8px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.userPage_linkURL:hover {
+	background-color: var(--color_greenPale);
+}
+
+.userPage_profile {
+	font-size: 14px;
+	font-weight: normal;
+	margin: 2px 2px 0px 2px;
+	padding: 5px 8px;
+}
+
+.userPage_user {
+	display: block;
+	width: 100%;
+}
+
+.userPage_userID {
+	color: var(--color_greenDark);
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.userPage_userIcon {
+	background: var(--color_green);
+	border-radius: 36px;
+	float: left;
+	height: 72px;
+	margin: 8px;
+	width: 72px;
+}
+
+.userPage_userName {
+	color: var(--color_greenDark);
+	font-size: 24px;
+	font-weight: bold;
+	margin: 12px 6px 8px;
+	width: 100%;
+}
+
+.head_parent {
+	display: flex;
+	height: 48px;
+}
+
+.head_icon {
+	flex-basis: 50%;
+	margin: 4px;
+	position: relative;
+}
+
+.head_iconImg {
+	max-height: 100%;
+	max-width: 100%;}
+
+.head_linkBase {
+	height: 100%;
+	position: absolute;
+	right: 24px;
+	top: 20px;
+}
+
+.head_link {
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.logo {
+	left: 50%;
+	max-height: 100%;
+	max-width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.loginButton_base {
+	display: flex;
+	flex-direction: row;
+	margin: 0px 60px;
+	max-width: 100%;
+	padding: 0px;
+}
+
+.underButton_base {
+	align-items: flex-end;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	bottom: 0px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	height: 64px;
+	position: fixed;
+	width: 100vw;
+}
+
+.button_Base1 {
+	background: var(--color_white);
+	border-radius: 20px;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base1:hover{
+	opacity: 0.6;
+}
+
+.button_Base2 {
+	border-color: var(--color_white);
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 2px;
+	box-sizing: border-box;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base2:hover{
+	opacity: 0.6;
+}
+
+.button_Text1 {
+	color: var(--color_green);
+	font-size: 16px;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.button_Text2 {
+	color: var(--color_white);
+	font-size: 16px;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.userList_title {
+	background: var(--color_green);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	display: flex;
+	height: 64px;
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+}
+
+.userList_titleText {
+	color: var(--color_white);
+	font-size: 18px;
+	font-weight: bold;
+	left: 54px;
+	position: fixed;
+	top: 20px;
+	width: 70%;
+}
+
+.backButton_base {
+	color: var(--color_white);
+	display: block;
+	font-size: 18px;
+	font-weight: bold;
+	left: 20px;
+	opacity: 0.8;
+	position: fixed;
+	text-decoration: none;
+	top: 20px;
+}
+
+.backButton_text {
+	color: var(--color_white);
+	font-size: 16px;
+	font-weight: bold;
+	position: relative;
+	top: 2px;
+}
+
+.userList_editButton {
+	/* ここあとで変える */
+	position: fixed;
+	right: 20px;
+	top: 4px;
+	width: 20%;
+}
+
+.login_base {
+	left: 50%;
+	position: relative;
+	transform:translateX(-50%);
+	width: 70%;
+}
+
+.login_parent {
+	display: block;
+	margin-bottom: 30px;
+	width: 100vw;
+}
+
+.login_info {
+	color: var(--color_white);
+	font-size: 14px;
+	font-weight: normal;
+	width: 100%;
+}
+
+.login_info2 {
+	color: var(--color_white);
+	font-size: 18px;
+	font-weight: bold;
+	width: 100%;
+}
+
+.login_input {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--color_white);
+	box-sizing: border-box;
+	color: var(--color_white);
+	font: 15px/24px sans-serif;
+	padding: 3px;
+	width: 100%;
+}
+
+.login_input:focus {
+	border-bottom: 2px solid var(--color_greenPale);
+	outline: none;
+}
+
+.logo_base {
+	height: 30%;
+	position: relative;
+}
+
+.OverlapWinsow {
+	background: rgba(0,0,0,0.5);
+	height: 100vh;
+	left: 0px;
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+}
+
+.newList_parent {
+	background: var(--color_green);
+	border-radius: 20px;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	width: 60%;
+}
+
+.link_text {
+	color: #0000FF;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: underline;
+}
