@@ -115,6 +115,7 @@ function sendImg(){
     //フォームデータを取得
     var formdata = new FormData(document.getElementById("img_form"));
     //formdataに対して"sessID=3"を追加
+    formdata.append("method", 'get')
     formdata.append("sessID", 3)
     xhr.open('POST', HOST+'/image', true);
     xhr.send(formdata);
