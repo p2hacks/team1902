@@ -1,0 +1,49 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sprout</title>
+	<link rel="shortcut icon"type="image/png" href="./img/icon.png">
+	<link rel="stylesheet" href="./css/base.css" type="text/css">
+	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<script type="text/javascript" src="./js/login.js"></script>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="scroll login_body">
+	
+	<!-- ロゴ -->
+	<div class="logo_base">
+		<img src="./img/logo.png" class="logo">
+	</div>
+	
+	<!-- ログインフォーム -->
+	<div class="login_parent">
+		<div class="login_base">
+			<div class="login_info2">ログイン</div>
+			<div style="height: 12px;"></div>
+			<div class="login_info">ユーザーID or メールアドレス</div>
+			<input class="login_input" type="text" id="userKey">
+			<div style="height: 12px;"></div>
+			<div class="login_info">パスワード</div>
+			<input class="login_input" type="password" id="userPass">
+		</div>
+	</div>
+	
+	<!-- ログインボタン（JavaScript未実装） -->
+	<div class="loginButton_base" style="display: block;">
+		<a id="login" class="button_Base2"><div class="button_Text2">ログイン</div></a>
+		<div class="login_info" id="errorMsg"></div>
+	</div>
+	
+	<!-- アカウント作成ボタン -->
+	<div style="height: 48px;"></div>
+	<div class="loginButton_base" style="display: block;">
+		<div class="login_info">※アカウントをお持ちでない場合は</div>
+		<a href="createAccount.html" class="button_Base1"><div class="button_Text1">アカウント作成</div></a>
+	</div>
+	<div style="height: 24px;"></div>
+	
+</body>
+</html>
