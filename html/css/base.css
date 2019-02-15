@@ -1,3 +1,5 @@
+/* 古いclass名はhtmlを変更次第消す！ */
+
 :root {
 	/* Theme Color */
 	--color_green: #008D56;
@@ -37,14 +39,14 @@ a:active {
 
 .text_white,.text_normal {
 	color: var(--color_white);
-	font-size: 16px;
+	font-size: medium;
 	font-weight: normal;
 	margin: 40px 50px;
 }
 
 .link_text,.text_link {
 	color: #0000FF;
-	font-size: 14px;
+	font-size: medium;
 	font-weight: bold;
 	text-decoration: underline;
 }
@@ -77,7 +79,7 @@ a:active {
 .selectList_cardName,.list_thinTitle {
 	-o-text-overflow: ellipsis;
 	color: var(--color_greenDark);
-	font-size: 18px;
+	font-size: large;
 	font-weight: bold;
 	left: 12px;
 	max-width: 95%;
@@ -111,7 +113,7 @@ a:active {
 .cardList_name,.list_boldTitle {
 	-o-text-overflow: ellipsis;
 	color: var(--color_greenDark);
-	font-size: 22px;
+	font-size: large;
 	font-weight: bold;
 	left: 72px;
 	max-width: 70%;
@@ -121,7 +123,6 @@ a:active {
 	top: 6px;
 	white-space: nowrap;
 }
-
 
 .cardList_id,.list_boldID {
 	color: var(--color_greenDark);
@@ -155,7 +156,7 @@ a:active {
 }
 
 .userPage_profile {
-	font-size: 14px;
+	font-size: medium;
 	font-weight: normal;
 	margin: 2px 2px 0px 2px;
 	padding: 5px 8px;
@@ -163,7 +164,7 @@ a:active {
 
 .userPage_userID {
 	color: var(--color_greenDark);
-	font-size: 12px;
+	font-size: small;
 	font-weight: bold;
 }
 
@@ -178,7 +179,7 @@ a:active {
 
 .userPage_userName {
 	color: var(--color_greenDark);
-	font-size: 24px;
+	font-size: large;
 	font-weight: bold;
 	margin: 12px 6px 8px;
 	width: 100%;
@@ -193,8 +194,12 @@ a:active {
 	transform: translate(-50%,-50%);
 }
 
+.logo_base {
+	padding: 128px 0px;
+	position: relative;
+}
 
-.OverlapWinsow {
+.OverlapWinsow,.overlapWinsow_background {
 	background: rgba(0,0,0,0.5);
 	height: 100vh;
 	left: 0px;
@@ -203,4 +208,160 @@ a:active {
 	width: 100vw;
 }
 
+.newList_parent,.overlapWinsow_window {
+	background: var(--color_green);
+	border-radius: 20px;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	width: 60%;
+}
 
+.login_input,.input_box {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--color_white);
+	box-sizing: border-box;
+	color: var(--color_white);
+	font: 15px/24px sans-serif;
+	padding: 3px;
+	width: 100%;
+}
+
+.login_input:focus,.input_box:focus {
+	border-bottom: 2px solid var(--color_greenPale);
+	outline: none;
+}
+
+.userList_title,.topTab_base {
+	background: var(--color_green);
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	display: flex;
+	height: 64px;
+	position: fixed;
+	top: 0px;
+	width: 100vw;
+}
+
+.userList_titleText,.topTab_text {
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
+	left: 54px;
+	position: fixed;
+	top: 20px;
+	width: 70%;
+}
+
+.backButton_base {
+	color: var(--color_white);
+	display: block;
+	left: 20px;
+	opacity: 0.8;
+	position: fixed;
+	text-decoration: none;
+	top: 20px;
+}
+
+.backButton_text {
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
+	position: relative;
+	top: 2px;
+}
+
+.login_base,.input_base {
+	/* login_parentは削除しました */
+	left: 50%;
+	position: relative;
+	transform:translateX(-50%);
+	width: 70%;
+}
+
+.login_info,.input_info {
+	color: var(--color_white);
+	font-size: small;
+	font-weight: normal;
+	width: 100%;
+}
+
+.login_info2,.input_title {
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
+	width: 100%;
+}
+
+.userList_editButton,.topTab_buttonOuter {
+	position: fixed;
+	right: 20px;
+	top: 4px;
+	width: 20%;
+}
+
+.loginButton_base,.button_outer {
+	display: flex;
+	flex-direction: row;
+	margin: 0px 60px;
+	max-width: 100%;
+	padding: 0px;
+}
+
+.button_Base1 {
+	background: var(--color_white);
+	border-radius: 20px;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base1:hover{
+	opacity: 0.6;
+}
+
+.button_Text1 {
+	color: var(--color_green);
+	font-size: medium;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
+
+.button_Base2 {
+	border-color: var(--color_white);
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 2px;
+	box-sizing: border-box;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+.button_Base2:hover{
+	opacity: 0.6;
+}
+
+.button_Text2 {
+	color: var(--color_white);
+	font-size: medium;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+}
