@@ -198,20 +198,26 @@ a:active {	color: #ff8000; }
 }
 
 .userPage_userID {
-
+	color: var(--textColor3);
+	font-weight: 700;
+	font-size: 12px;
 }
 
 .userPage_userIcon {
-	background: #FFFFFF;
+	background: var(--mainColor);
 	height: 72px;
 	width: 72px;
-	margin: 4px;
+	margin: 8px;
 	border-radius: 36px;
 	float: left;
 }
 
 .userPage_userName {
 	width: 100%;
+	color: var(--textColor3);
+	font-weight: 700;
+	font-size: 24px;
+	margin: 12px 6px 8px;
 }
 
 .head_parent {
@@ -231,19 +237,16 @@ a:active {	color: #ff8000; }
 }
 
 .head_linkBase {
-	margin: 4px;
-	position: relative;
-	flex-basis: 50%;
+	height: 100%;
+	position: absolute;
+	right: 24px;
+	top: 20px;
 }
 
 .head_link {
 	font-size: 14px;
 	margin: 0px;
 	padding: 0px;
-	position: absolute;
-	top: 50%;
-	right: 12px;
-	transform: translateY(-50%);
 }
 
 .logo {
@@ -252,7 +255,7 @@ a:active {	color: #ff8000; }
 	top: 50%;
 	left: 50%;
 	position: absolute;
-	transform:translate(-50%,-50%);
+	transform: translate(-50%,-50%);
 }
 
 .loginButton_base {
@@ -290,7 +293,7 @@ a:active {	color: #ff8000; }
 }
 
 .button_Base1:hover{
-	opacity: 0.8;
+	opacity: 0.6;
 }
 
 .button_Base2 {
@@ -308,7 +311,7 @@ a:active {	color: #ff8000; }
 }
 
 .button_Base2:hover{
-	opacity: 0.8;
+	opacity: 0.6;
 }
 
 .button_Text1 {
@@ -413,7 +416,7 @@ a:active {	color: #ff8000; }
 	width: 100%;
 	font: 15px/24px sans-serif;
 	color: var(--textColor2);
-	padding: 3px
+	padding: 3px;
 	box-sizing: border-box;
 	border: none;
 	border-bottom: 2px solid var(--textColor2);
