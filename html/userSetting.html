@@ -1,0 +1,37 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Sprout</title>
+	<link rel="shortcut icon"type="image/png" href="./img/icon.png">
+	<link rel="stylesheet" href="./css/base.css" type="text/css">
+	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
+	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="scroll">
+
+	<!-- 時間がないのでlistSelectを使って実装 -->
+
+	<!-- リスト名用の高さを確保する -->
+	<div style="height: 64px; width:100%;"></div>
+	<div style="height: 12px; width:100%;"></div>
+	
+	<!-- リストを設置 -->
+	<div class="selectList_base">
+		<a class="selectList_card" href="./userPageEdit.html"><div class="selectList_cardName">プロフィールの編集</div></a>
+		<a class="selectList_card" href="selectList.html"><div class="selectList_cardName">リストの表示</div></a>
+		<a class="selectList_card" href=""><div class="selectList_cardName">現在有効な自分のカードのリスト（未実装）</div></a>
+		<a class="selectList_card" href=""><div class="selectList_cardName">検索（未実装）</div></a>
+		<a class="selectList_card" href=""><div class="selectList_cardName" style="color: #F00;">ログアウト</div></a>
+	</div>
+
+	<!-- タイトルを表示する -->
+	<div class="userList_title">
+		<a class="backButton_base" href="javascript:history.back()" target="_self"><div class="backButton_text">←</div></a>
+		<div class="userList_titleText">設定</div>
+	</div>
+
+</body>
+</html>
