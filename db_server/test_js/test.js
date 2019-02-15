@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-var HOST = 'http://localhost:3000/post';
+var HOST = 'http://113.213.215.192:3000/post' //'http://localhost:3000/post';
 
 function sendData(datas, callback) {
     // json形式のdatasを受け取り、callback関数に対して返します
@@ -151,6 +151,7 @@ function newAcount(name, hpass) {
     }
     sendjson(data, function(){
         console.log('sessID = '+this.response);
+        //今回テストなのでアカウントを作って消した
         userdelete(this.response);
     })
 }
@@ -160,6 +161,17 @@ function userdelete(sessID) {
         'method':'delete',
         'want':'user',
         'send':{'sessID':sessID}
+    }
+    sendjson(data, function(){
+        console.log(this.response);
+    })
+}
+
+function getUserdataNull(user_id) {
+    var data = {
+        'method':'get',
+        'want':'user',
+        'send':{'sessID':0,'user_id':user_id}
     }
     sendjson(data, function(){
         console.log(this.response);

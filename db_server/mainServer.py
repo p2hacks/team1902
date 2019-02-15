@@ -24,6 +24,8 @@ def getjson():
         if data['want']=='login':
             return login(data['send']['name'], data['send']['pass'])
         elif data['want']=='user':
+            if user_id == 'error':
+                user_id = data['send']['user_id']
             return getUser(user_id)
         elif data['want']=='list':
             return getListOfList(user_id)
