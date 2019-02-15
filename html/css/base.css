@@ -452,3 +452,10 @@ a:active {	color: #ff8000; }
 	position: relative;
 	transform:translate(-50%,-50%);
 }
+
+.link_text {
+	color: #00F;
+	font-size: 14px;
+	font-weight: 700;
+	text-decoration: underline;
+}
