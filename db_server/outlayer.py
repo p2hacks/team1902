@@ -91,9 +91,24 @@ def listDestroy(userID, sessID, listID):
     err = checksessID(userID, sessID)
     if err!=None:
         return returnError(err)
+    
     err = delList(userID, listID)
     if err!=None:
         return returnError(err)
+
+def getUserJson(userID):
+    data, err = pullData(userID)
+    if err!=None:
+        return returnError(err)
+    
+    return json.dumps({
+        "user":{
+		"userID": data[0],
+		"userName": data[1],
+		"userURL": data[3].split(','),
+		"userProfile":data[2]
+	}
+    })
 
 #temp = userRegister('tom@gmail.com', 'aaaa')
 #print(getUser('1'))

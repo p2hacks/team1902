@@ -11,11 +11,6 @@ app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = './prof_imgs'
 
-@app.route("/post", methods=['POST'])
-def getData():
-    data = request.form['user']
-    return getUser(int(data))
-
 @app.route("/post/json", methods=['POST'])
 def getjson():
     data = request.json
@@ -24,9 +19,8 @@ def getjson():
     if data['method']=='get':
         if data['want']=='login':#remake
             return login(data['send']['mail'], data['send']['pass'])
-        elif data['want']=='user':#No
-            temp = getUser(data['send']['userID'])
-            return temp
+        elif data['want']=='user':#remake
+            return getUserJson(data['send']['userID'])
         elif data['want']=='list':#remake
             return getListOfList(data['send']['userID'], data['send']['sessID'])
         elif data['want']=='post':#No
@@ -47,7 +41,7 @@ def getjson():
     elif data['method']=='update':
         if data['want']=='user':
             return data['send']['hoge']
-        elif data['want']=='list'
+        elif data['want']=='list':
             return ''
 
     elif data['method']=='send':
