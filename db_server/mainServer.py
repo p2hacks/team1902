@@ -1,5 +1,6 @@
 #--*--utf-8--*--
 # このファイルを起動すればサーバーが立ち上がります
+# https://sproutdb.herokuapp.com
 from flask import Flask, request, send_from_directory
 from conceptLayer import *
 from outlayer import *

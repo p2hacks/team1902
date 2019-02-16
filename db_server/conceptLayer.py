@@ -1,6 +1,5 @@
 #--*--utf-8--*--
 import sqlite3
-from contextlib import closing
 import json
 
 dbname = 'sprout.db'
