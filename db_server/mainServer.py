@@ -20,9 +20,9 @@ def getjson():
         if data['want']=='login':#remake
             return login(data['send']['mail'], data['send']['pass'])
         elif data['want']=='user':#remake
-            return getUserJson(data['send']['userID'])
+            return getUserJson(int(data['send']['userID']))
         elif data['want']=='list':#remake
-            return getListOfList(data['send']['userID'], data['send']['sessID'])
+            return getListOfList(int(data['send']['userID']), data['send']['sessID'])
         elif data['want']=='post':#No
             return 'no make'
 
@@ -30,13 +30,13 @@ def getjson():
         if data['want']=='user':#remake
             return userRegister(data['send']['mail'], data['send']['pass'])
         elif data['want']=='list':#check
-            makeList(data['send']['userID'], data['send']['listname'], data['send']['ids'])
+            makeList(int(data['send']['userID']), data['send']['listname'], data['send']['ids'])
 
     elif data['method']=='delete':
         if data['want']=='user':#remake
-            return userDestroy(data['send']['userID'], data['send']['sessID'])
+            return userDestroy(int(data['send']['userID']), data['send']['sessID'])
         elif data['want']=='list':#remake
-            return listDestroy(data['send']['userID'], data['send']['sessID'], data['send']['listID'])
+            return listDestroy(int(data['send']['userID']), data['send']['sessID'], int(data['send']['listID']))
 
     elif data['method']=='update':
         if data['want']=='user':
@@ -48,7 +48,7 @@ def getjson():
         if data['want']=='post':
             pass
         elif data['want']=='logout':#remake
-            return logout(data['send']['userID'], data['send']['sessID'])
+            return logout(int(data['send']['userID']), data['send']['sessID'])
 
 @app.route("/post/Fimage", methods=['POST'])
 def sendFromClient():

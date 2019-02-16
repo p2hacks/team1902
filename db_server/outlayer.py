@@ -95,6 +95,7 @@ def listDestroy(userID, sessID, listID):
     err = delList(userID, listID)
     if err!=None:
         return returnError(err)
+    return 'done'
 
 def getUserJson(userID):
     data, err = pullData(userID)
