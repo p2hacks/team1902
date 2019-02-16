@@ -21,8 +21,8 @@ def updateData(userID, name, intro, urls, mail, hpass):
     try:
         with sqlite3.connect(dbname) as conn:
             c = conn.cursor()
-            order = 'update selfData set (name,intro,urls,mail,pass) values (?,?,?,?,?) where id=?'
-            c.execute(order, (userID,))
+            order = 'update selfData set name=?,intro=?,urls=?,mail=?,pass=? where id=?'
+            c.execute(order, (name,intro,urls,mail,hpass,userID))
             conn.commit()
             return None
     except:
@@ -223,14 +223,3 @@ if __name__=='__main__':
     #delList(1, 2)
     #delAC(1)
     '''
-
-if __name__=='__main__':
-        mail = 'tom@gmail.com'
-        hpass = 'tom'
-        data, err = makeData(mail, hpass)
-        if err!=None:
-            print(err)
-        err = deleteData(data[0])
-        if err!=None:
-            print(err)
-        print('the end')
