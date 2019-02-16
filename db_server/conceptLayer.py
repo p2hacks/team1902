@@ -90,11 +90,10 @@ def getUser(id):
             datas = c.execute(order, (id,)).fetchone()
             dictdata = {
             "user":{
-                "ID": datas[0],
-                "Name": datas[1],
-                "icon": datas[2],
-                "url": datas[4].split(','),
-                "profile": datas[3]
+                "userID": datas[0],
+                "userName": datas[1],
+                "userURL": datas[4].split(','),
+                "userProfile": datas[3]
                 }
             }
             return json.dumps(dictdata)
