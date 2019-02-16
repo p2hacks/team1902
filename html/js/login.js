@@ -8,7 +8,7 @@ window.addEventListener("load", function(event) {
 		
 		// 文字の表示
 		document.getElementById("errorMsg").innerHTML = "";
-		if(userKey == "" || userPass == "") document.getElementById("errorMsg").innerHTML = "ユーザー情報が入力されていません。";
+		if(userKey == "" || userPass == "") document.getElementById("errorMsg").innerHTML = "※ユーザー情報が入力されていません。";
 	};
 });
 

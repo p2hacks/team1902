@@ -1,19 +1,10 @@
+/* class以外の説明は見ればわかると思うので省きます。 */
 :root {
-	/* メイン系カラー */
-	--mainColor: #008D56;				/* メインのテーマカラー */
-	--textColor: #040404;				/* 文字色 */
-	--textColor2: #FAFAFA;				/* 文字色（白） */
-	--textColor3: #004E2D;
-	--borderColor: #A2DBA8;
-	
-	/* 背景系カラー */
-	--bgColor01: #FAFAFA;				/* サブカラー */
-	--bgColor02: #1FFF8A;				/* 背景マウスホバーカラー */
-	
-	/* その他の色 */
-	--subColor1: #00CC62;				/* 固定配置背景色 */
-	--subColor2: #DDDDDD;				/* 境界用サブカラー（ボタンベースカラーなど） */
-	--subColor3: #BBBBBB;				/* マウスホバーカラー */
+	/* Theme Color */
+	--color_green: #008D56;
+	--color_white: #FAFAFA;
+	--color_greenDark: #004E2D;
+	--color_greenPale: #A2DBA8;
 }
 
 * {
@@ -22,440 +13,403 @@
 }
 
 body {
-	background: var(--bgColor01);
+	background: var(--color_white);
 	width: 100%;
 	height: 100%;
 	margin: 0px;
 	padding: 0px;
 }
 
-a:link {	color: #0000FF; }
-a:visited {	color: #000080; }
-a:hover {	color: #ff0000; }
-a:active {	color: #ff8000; }
+a:link {
+	color: #0000FF;
+}
 
-.text_white {
-	font-size: 16px;
-	font-weight: 350;
-	color: var(--textColor2);
+a:visited {
+	color: #000080;
+}
+
+a:hover {
+	color: #FF0000;
+}
+
+a:active {
+	color: #FF8000;
+}
+
+/* 通常のテキスト（白） */
+.text_normal {
+	color: var(--color_white);
+	font-size: medium;
+	font-weight: normal;
 	margin: 40px 50px;
 }
 
-.login_body {
-	background: var(--mainColor);
+/* リンクのテキスト（青） */
+.text_link {
+	color: #0000FF;
+	font-size: medium;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
-.selectList_base {
+/* タイトルのテキスト（緑） */
+.text_title {
+	color: var(--color_green);
+	font-size: medium;
+	font-weight: bold;
+	margin: 0px 0px 8px;
+}
+
+/* bodyの背景を緑にする（主にログイン前の画面） */
+.login_body {
+	background: var(--color_green);
+}
+
+/* リストの外枠 */
+.list_outer {
 	display: flex;
-	flex-wrap: wrap;
 	flex-direction: row;
-	padding: 2px;
+	flex-wrap: wrap;
 	margin: 0px;
 	max-width: 100%;
+	padding: 2px;
 }
 
-.selectList_card {
-	min-width: 320px;
-	width: 100%;
+/* 細いリストの1行のベース */
+.list_thinBase {
+	border-color: var(--color_greenPale);
+	border-bottom-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
 	height: 38px;
 	margin: 4px 10px;
-	position: relative;
-	box-sizing: border-box;
-	border-color: var(--borderColor);
-	border-style: solid;
-	border-left-style: none;
-	border-right-style: none;
-	border-top-style: none;
-	border-width: 1px;
-}
-
-.selectList_cardName {
-	color: var(--textColor3);
-	font-weight: 700;
-	font-size: 18px;
-	top: 3px;
-	left: 12px;
-	position: absolute;
-	max-width: 95%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	-o-text-overflow: ellipsis;
-}
-
-.cardList {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	padding: 2px;
-	margin: 0px;
-	max-width: 100%;
-}
-
-.cardList_card {
 	min-width: 320px;
+	position: relative;
 	width: 100%;
+}
+
+/* 細いリストのタイトル文字 */
+.list_thinTitle {
+	-o-text-overflow: ellipsis;
+	color: var(--color_greenDark);
+	font-size: large;
+	font-weight: bold;
+	left: 12px;
+	max-width: 95%;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 3px;
+	white-space: nowrap;
+}
+
+/* 太いリストの1行のベース */
+.list_boldBase {
+	border-color: var(--color_greenPale);
+	border-bottom-style: solid;
+	border-width: 1px;
+	box-sizing: border-box;
 	height: 64px;
 	margin: 4px 10px;
+	min-width: 320px;
 	position: relative;
-	box-sizing: border-box;
-	border-color: var(--borderColor);
-	border-style: solid;
-	border-left-style: none;
-	border-right-style: none;
-	border-top-style: none;
-	border-width: 1px;
+	width: 100%;
 }
 
-.cardList_Icon {
-	background: var(--mainColor);
-	height: 50px;
-	width: 50px;
-	margin: 5px 10px;
+/* 太いリストに設置するアイコン */
+.list_boldIcon {
+	background: var(--color_green);
 	border-radius: 25px;
+	height: 50px;
+	margin: 5px 10px;
+	width: 50px;
 }
 
-.cardList_name {
-	color: var(--textColor3);
-	font-weight: 700;
-	font-size: 22px;
-	top: 6px;
-	left: 72px;
-	position: absolute;
-	max-width: 70%;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+/* 太いリストのタイトル文字（幅おかしいかも） */
+.list_boldTitle {
 	-o-text-overflow: ellipsis;
+	color: var(--color_greenDark);
+	font-size: large;
+	font-weight: bold;
+	left: 72px;
+	max-width: 70%;
+	overflow: hidden;
+	position: absolute;
+	text-overflow: ellipsis;
+	top: 6px;
+	white-space: nowrap;
 }
 
-.cardList_id {
-	color: var(--textColor3);
-	font-weight: 600;
+/* 太いリストの表示ID */
+.list_boldID {
+	color: var(--color_greenDark);
 	font-size: small;
-	top: 38px;
+	font-weight: bold;
 	left: 72px;
 	position: absolute;
+	top: 38px;
 }
 
-.cardList_line {
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	height: 100%;
-	width: 24px;
-	background: var(--mainColor);
-	box-sizing: border-box;
-	border-color: var(--textColor2);
-	border-right-style: solid;
-	border-width: 2px;
-}
-
-.buttonCharacter {
-	color: var(--subColor1);
-	font-weight: 700;
-	font-size: 18px;
-	top: 50%;
-	left: 50%;
-	position: absolute;
-	transform:translate(-50%,-50%);
-}
-
+/* ユーザーページのURLリストの外側 */
 .userPage_listURL {
+	display: flex;
+	flex-direction: column;
 	list-style-type: none;
 	margin: 0px;
 	padding: 0px;
-	display: flex;
-	flex-direction: column;
 	width: 100%;
 }
 
-.userPage_linkURL {
-	background: var(--bgColor01);
-	margin: 2px 2px 0px 2px;
-	padding: 3px 8px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+/* ユーザーページのURLリストテキスト */
+.userPage_listURL_text {
 	-o-text-overflow: ellipsis;
+	margin: 2px 2px 0px 2px;
+	overflow: hidden;
+	padding: 3px 8px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
-.userPage_linkURL:hover {
-	background-color: var(--bgColor02);
+/* ユーザーページのURLリストのテキスト（マウスホバー時の背景色） */
+.userPage_listURL_text:hover {
+	background-color: var(--color_greenPale);
 }
 
+/* ユーザーページのプロフィール */
 .userPage_profile {
-	font-weight: 200;
-	font-size: 14px;
-	background: var(--bgColor01);
+	font-size: medium;
+	font-weight: normal;
 	margin: 2px 2px 0px 2px;
 	padding: 5px 8px;
 }
 
-.userPage_user {
-	width: 100%;
-	display: block;
-}
-
+/* ユーザーページのID */
 .userPage_userID {
-	color: var(--textColor3);
-	font-weight: 700;
-	font-size: 12px;
+	color: var(--color_greenDark);
+	font-size: small;
+	font-weight: bold;
 }
 
+/* ユーザーページのアイコン */
 .userPage_userIcon {
-	background: var(--mainColor);
-	height: 72px;
-	width: 72px;
-	margin: 8px;
+	background: var(--color_green);
 	border-radius: 36px;
 	float: left;
+	height: 72px;
+	margin: 8px;
+	width: 72px;
 }
 
+/* ユーザーページのユーザーネーム */
 .userPage_userName {
-	width: 100%;
-	color: var(--textColor3);
-	font-weight: 700;
-	font-size: 24px;
+	color: var(--color_greenDark);
+	font-size: large;
+	font-weight: bold;
 	margin: 12px 6px 8px;
+	width: 100%;
 }
 
-.head_parent {
-	display: flex;
-	height: 48px;
-}
-
-.head_icon {
-	flex-basis: 50%;
-	margin: 4px;
-	position: relative;
-}
-
-.head_iconImg {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-.head_linkBase {
-	height: 100%;
-	position: absolute;
-	right: 24px;
-	top: 20px;
-}
-
-.head_link {
-	font-size: 14px;
-	margin: 0px;
-	padding: 0px;
-}
-
+/* ログイン前のロゴ */
 .logo {
-	max-width: 100%;
-	max-height: 100%;
-	top: 50%;
 	left: 50%;
+	max-height: 100%;
+	max-width: 100%;
 	position: absolute;
+	top: 50%;
 	transform: translate(-50%,-50%);
 }
 
-.loginButton_base {
-	max-width: 100%;
-	margin: 0px 60px;
-	padding: 0px;
-	display: flex;
-	flex-direction: row;
-}
-
-.underButton_base {
-	position: fixed;
-	bottom: 0px;
-	/*background: var(--mainColor);*/
-	height: 64px;
-	width: 100vw;
-	display: flex;
-	flex-direction: row;
-	align-items: flex-end;
-	box-sizing: border-box;
-	border-top-left-radius: 20px;
-	border-top-right-radius: 20px;
-}
-
-.button_Base1 {
-	width: 100%;
+/* ログイン前のロゴの上下の空間を作る */
+.logo_base {
+	padding: 128px 0px;
 	position: relative;
-	text-align: center;
-	text-decoration: none;
-	height: 40px;
-	border-radius: 20px;
-	margin: 5px 0px;
-	background: var(--textColor2);
-	display: block;
 }
 
-.button_Base1:hover{
-	opacity: 0.6;
-}
-
-.button_Base2 {
-	width: 100%;
-	text-align: center;
-	text-decoration: none;
-	height: 40px;
-	border-radius: 20px;
-	margin: 5px 0px;
-	border-color: var(--textColor2);
-	border-style: solid;
-	border-width: 2px;
-	display: block;
-	box-sizing: border-box;
-}
-
-.button_Base2:hover{
-	opacity: 0.6;
-}
-
-.button_Text1 {
-	color: var(--mainColor);
-	font-size: 16px;
-	font-weight: 700;
-	top: 50%;
-	left: 50%;
-	position: relative;
-	transform:translate(-50%,-50%);
-}
-
-.button_Text2 {
-	color: var(--textColor2);
-	font-size: 16px;
-	font-weight: 700;
-	top: 50%;
-	left: 50%;
-	position: relative;
-	transform:translate(-50%,-50%);
-}
-
-.userList_title {
+/* 上に情報を表示するときに背景を暗くする（基本的にdisplay: none;で全画面表示） */
+.overlapWinsow_background {
+	background: rgba(0,0,0,0.5);
+	height: 100vh;
+	left: 0px;
 	position: fixed;
 	top: 0px;
-	height: 64px;
 	width: 100vw;
-	background: var(--mainColor);
+}
+
+/* 上に情報を表示するときのwindowベース */
+.overlapWinsow_window {
+	background: var(--color_green);
+	border-radius: 20px;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	width: 60%;
+}
+
+/* 入力するやつ */
+.input_box {
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid var(--color_white);
 	box-sizing: border-box;
+	color: var(--color_white);
+	font: 15px/24px sans-serif;
+	padding: 3px;
+	width: 100%;
+}
+
+
+/* 入力するやつ選択中 */
+.input_box:focus {
+	border-bottom: 2px solid var(--color_greenPale);
+	outline: none;
+}
+
+/* inputがあるとこのベース（左右に空間を作って自然にする） */
+.input_base {
+	left: 50%;
+	margin: 0px 0px 24px;
+	position: relative;
+	transform:translateX(-50%);
+	width: 70%;
+}
+
+/* inputの説明文字 */
+.input_info {
+	color: var(--color_white);
+	font-size: small;
+	font-weight: normal;
+	margin: 16px 0px 0px;
+	width: 100%;
+}
+
+/* inputがあるとこの大きめの文字 */
+.input_title {
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
+	width: 100%;
+}
+
+/* 上のタブ */
+.topTab_base {
+	background: var(--color_green);
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
-	display: flex;
 	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	display: flex;
+	height: 64px;
+	position: fixed;
+	top: 0px;
+	width: 100vw;
 }
 
-.userList_titleText {
-	position: fixed;
-	width: 70%;
-	color: var(--textColor2);
-	font-weight: 700;
-	font-size: 18px;
-	top: 20px;
+/* 上のタブのテキスト（タイトル） */
+.topTab_text {
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
 	left: 54px;
+	position: fixed;
+	top: 20px;
+	width: 70%;
 }
 
-.backButton_base {
+/* 上のタブのボタンの位置を決める */
+.topTab_buttonOuter {
 	position: fixed;
-	text-decoration: none;
-	color: var(--textColor2);
-	font-weight: 700;
-	font-size: 18px;
-	top: 20px;
+	right: 20px;
+	top: 4px;
+	width: 20%;
+}
+
+/* ボタンの位置を決める */
+.button_outer {
+	display: flex;
+	flex-direction: row;
+	margin: 0px 60px;
+	max-width: 100%;
+	padding: 0px;
+}
+
+/* 上のタブに置く戻るボタンの位置を決める */
+.backButton_base {
+	color: var(--color_white);
+	display: block;
 	left: 20px;
 	opacity: 0.8;
-	display: block;
+	position: fixed;
+	text-decoration: none;
+	top: 20px;
 }
 
+/* 上のタブに置く戻るボタンのテキスト（.backButton_baseと一体化できそうな気がする） */
 .backButton_text {
-	color: var(--textColor2);
-	font-size: 16px;
-	font-weight: 600;
+	color: var(--color_white);
+	font-size: large;
+	font-weight: bold;
 	position: relative;
 	top: 2px;
 }
 
-.userList_editButton {
-	/* ここあとで変える */
-	position: fixed;
-	width: 20%;
-	top: 4px;
-	right: 20px;
-}
-
-.login_base {
-	width: 70%;
-	left: 50%;
-	position: relative;
-	transform:translateX(-50%);
-}
-
-.login_parent {
-	width: 100vw;
-	display: block;
-	margin-bottom: 30px;
-}
-
-.login_info {
-	color: var(--textColor2);
-	font-weight: 450;
-	font-size: 14px;
-	width: 100%;
-}
-
-.login_info2 {
-	color: var(--textColor2);
-	font-weight: 700;
-	font-size: 18px;
-	width: 100%;
-}
-
-.login_input {
-	width: 100%;
-	font: 15px/24px sans-serif;
-	color: var(--textColor2);
-	padding: 3px;
-	box-sizing: border-box;
-	border: none;
-	border-bottom: 2px solid var(--textColor2);
-	background: transparent;
-}
-
-.login_input:focus {
-	border-bottom: 2px solid var(--borderColor);
-	outline: none;
-}
-
-.logo_base {
-	height: 30%;
-	position: relative;
-}
-
-.OverlapWinsow {
-	height: 100vh;
-	width: 100vw;
-	background: rgba(0,0,0,0.5);
-	position: fixed;
-	top: 0px;
-	left: 0px;
-}
-
-.newList_parent {
-	background: var(--mainColor);
-	width: 60%;
+/* 白いボタンのベース */
+.button_Base1 {
+	background: var(--color_white);
 	border-radius: 20px;
-	
-	left: 50%;
-	top: 50%;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
 	position: relative;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+
+/* 白いボタンのマウスホバー時 */
+.button_Base1:hover{
+	opacity: 0.6;
+}
+
+/* 白いボタンのテキスト */
+.button_Text1 {
+	color: var(--color_green);
+	font-size: medium;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
 	transform:translate(-50%,-50%);
 }
 
-.link_text {
-	color: #00F;
-	font-size: 14px;
-	font-weight: 700;
-	text-decoration: underline;
+/* 緑のボタンのベース */
+.button_Base2 {
+	border-color: var(--color_white);
+	border-radius: 20px;
+	border-style: solid;
+	border-width: 2px;
+	box-sizing: border-box;
+	display: block;
+	height: 40px;
+	margin: 5px 0px;
+	text-align: center;
+	text-decoration: none;
+	width: 100%;
+}
+
+/* 緑のボタンのマウスホバー時 */
+.button_Base2:hover{
+	opacity: 0.6;
+}
+
+/* 緑のボタンのテキスト */
+.button_Text2 {
+	color: var(--color_white);
+	font-size: medium;
+	font-weight: bold;
+	left: 50%;
+	position: relative;
+	top: 50%;
+	transform:translate(-50%,-50%);
 }
