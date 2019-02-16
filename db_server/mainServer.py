@@ -18,24 +18,26 @@ def getData():
 @app.route("/post/json", methods=['POST'])
 def getjson():
     data = request.json
+    print(data)
     
     if data['method']=='get':
-        user_id = sessToUser(data['send']['sessID'])
         if data['want']=='login':
+            user_id = sessToUser(data['send']['sessID'])
             return login(data['send']['name'], data['send']['pass'])
         elif data['want']=='user':
-            if user_id == 'error':
-                user_id = data['send']['user_id']
-            return getUser(user_id)
+            temp = getUser(data['send']['userID'])
+            return temp
         elif data['want']=='list':
+            user_id = sessToUser(data['send']['sessID'])
             return getListOfList(user_id)
         elif data['want']=='post':
+            user_id = sessToUser(data['send']['sessID'])
             postID = []
             return postID
 
     elif data['method']=='create':
         if data['want']=='user':
-            return userRegister(data['send']['name'], data['send']['pass'])
+            return userRegister(data['send']['mail'], data['send']['pass'])
         elif data['want']=='list':
             makeList(sessToUser(data['send']['sessID']), data['send']['listname'], data['send']['ids'])
 

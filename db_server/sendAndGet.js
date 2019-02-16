@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest();
 var HOST = 'http://35.212.131.182:3000/post';
 
 function sendjson(requestData, callback) {
-    requestData = JSON.strigify(requestData)
+    requestData = JSON.stringify(requestData)
     xhr.open('POST', HOST+'/json', true);
     xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
     xhr.send(requestData);

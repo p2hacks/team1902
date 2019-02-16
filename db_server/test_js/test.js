@@ -1,5 +1,6 @@
 var xhr = new XMLHttpRequest();
-var HOST = 'http://113.213.215.192:3000/post' //'http://localhost:3000/post';
+//var HOST = 'http://113.213.215.192:3000/post';
+var HOST = 'http://localhost:3000/post';
 
 function sendData(datas, callback) {
     // json形式のdatasを受け取り、callback関数に対して返します
@@ -41,6 +42,7 @@ function sendjson(requestData, callback){
     xhr.send(requestData);
 
     xhr.onreadystatechange = function() {
+        //console.log(xhr)
         if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
             callback.apply(xhr);
         }
@@ -141,18 +143,20 @@ function login(name, hpass) {
     })
 }
 
-function newAcount(name, hpass) {
-    if(!name)name='tom';
+function newAcount(mail, hpass) {
+    if(!mail)mail='tom@gmail.com';
     if(!hpass)hpass='tom';
     var data = {
         'method':'create',
         'want':'user',
-        'send':{'name':name, 'pass':hpass}
+        'send':{'mail':mail, 'pass':hpass}
     }
     sendjson(data, function(){
-        console.log('sessID = '+this.response);
+        console.log(this.response);
         //今回テストなのでアカウントを作って消した
-        userdelete(this.response);
+        temp = JSON.parse(this.response);
+        getUserdata(temp['userID']);
+        //userdelete(temp['sessID']);
     })
 }
 
@@ -167,14 +171,14 @@ function userdelete(sessID) {
     })
 }
 
-function getUserdataNull(user_id) {
+function getUserdata(user_id) {
     var data = {
         'method':'get',
         'want':'user',
-        'send':{'sessID':0,'user_id':user_id}
+        'send':{'userID':user_id}
     }
     sendjson(data, function(){
-        console.log(this.response);
+        console.log("re = " + this.response);
     })
 }
 
