@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="./css/base.css" type="text/css">
 	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
 	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<script type="text/javascript" src="./js/createAccount.js"></script>
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -20,17 +22,18 @@
 	<div class="input_base">
 		<div class="input_title">新規登録</div>
 		<div class="input_info">メールアドレス</div>
-		<input class="input_box" type="text" name="mail">
+		<input class="input_box" type="text" id="mail">
 		<div class="input_info">パスワード</div>
-		<input class="input_box" type="password" name="pass">
+		<input class="input_box" type="password" id="pass1">
 		<div class="input_info">パスワード（確認用）</div>
-		<input class="input_box" type="password" name="pass">
+		<input class="input_box" type="password" id="pass2">
+		<div class="input_info" id="errorMsg"></div>
 	</div>
 	
 	<!-- キャンセル、確定 -->
 	<div class="button_outer">
 		<a href="./loginSelect.html" class="button_Base2" style="width:50%; margin: 5px;"><div class="button_Text2">キャンセル</div></a>
-		<a href="" class="button_Base1"  style="width:50%; margin: 5px;"><div class="button_Text1">確定</div></a>
+		<a class="button_Base1" style="width:50%; margin: 5px;" id="decided"><div class="button_Text1">確定</div></a>
 	</div>
 	
 </body>
