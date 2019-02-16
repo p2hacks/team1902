@@ -73,6 +73,14 @@ def getimg():
             return 'sessID error'
         return send_from_directory(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg")
 
+@app.route("/post/Gimage", methods=['POST'])
+def getimgs():
+    userID = request.form['userID']
+    try:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], str(userID)+".jpg")
+    except:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], "default.jpg")
+
 if __name__=='__main__':
     #外部 app.run(host='0.0.0.0', port=3000, threaded=True)
     app.run(host='localhost', port=3000)

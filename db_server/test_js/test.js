@@ -90,7 +90,7 @@ function controle_image(method, sessID, imagefile) {
     }
 }
 
-function getImg(){
+function getImg(userID, calltag){
     // 画像を取得し、表示させる関数になってます
     xhr.open('POST', HOST+'/Gimage', true);
     xhr.onload = function() {
@@ -101,15 +101,22 @@ function getImg(){
         };
         image.src = oURL;
         image.height = 60;
-        var tagg = document.getElementById("images");
-        tagg.appendChild(image)
+        calltag.appendChild(image)
+        //var tagg = document.getElementById("images");
+        //tagg.appendChild(image)
     };
+
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
     //返答の仕方を設定
     xhr.responseType = 'blob';
     // 今回はnull送ってます
-    xhr.send(null)
+    xhr.send('userID='+userID)
     console.log(xhr.response);
+}
+
+function viewImg() {
+    var pair = document.getElementById("images");
+    getImg(2, pair)
 }
 
 function sendImg(){
