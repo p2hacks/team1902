@@ -5,17 +5,19 @@ def getListOfList(user_id):
     data = [getListData(user_id, i) for i in getListID(user_id)]
     return json.dumps(data)
 
-def login(name, hpass):
-    id = checkAC(name, hpass)
+def login(mail, hpass):
+    id = checkAC(mail, hpass)
     if id!=0:
-        return str(makeSessID(id))
+        return json.dumps('sessID':str(makeSessID(id), 'userID':str(id)))
     else:
-        return 0
+        return returnError('Error_Attestation')
 
 def logout(sess_id):
     delSessID(sess_id)
 
 def userRegister(mail, hpass):
+    if 'error'==searchMail(mail):
+        return returnError('Error_CreateAccount_Mail')
     makeAC(mail, hpass)
     user_id = checkAC(mail, hpass)
     addUser(user_id, mail.split('@')[0], "hoge","hoge","hoge")

@@ -4,6 +4,9 @@ import json
 
 dbname = 'sprout.db'
 
+def returnError(errMean):
+    return json.dumps({'error': errMean})
+
 #--------セッション系---------
 sessID = {0:"error"}
 def makeSessID(id):
@@ -51,11 +54,18 @@ def checkAC(mail, hpass):
 def searchAC(id):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
-        order = 'select * from log where id =?'
+        order = 'select * from log where id=?'
         try:
-            return c.execute(order, id).fetchone()[0]
+            return c.execute(order, (id,)).fetchone()[0]
         except:
             return 'error'
+
+def searchMail(mail):
+    with sqlite3.connect(dbname) as conn:
+        c = conn.cursor()
+        order = 'select * from log where mail=?'
+        temp = c.execute(order, (mail,)).fetchone()
+        return 'done' if temp!=None else 'error'
 
 def delAC(id):
     with sqlite3.connect(dbname) as conn:

@@ -23,8 +23,7 @@ def getjson():
     
     if data['method']=='get':
         if data['want']=='login':
-            user_id = sessToUser(data['send']['sessID'])
-            return login(data['send']['name'], data['send']['pass'])
+            return login(data['send']['mail'], data['send']['pass'])
         elif data['want']=='user':
             temp = getUser(data['send']['userID'])
             return temp
