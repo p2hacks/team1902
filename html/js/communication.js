@@ -24,6 +24,7 @@ function new_Account(mail, hpass) {
     sendjson(data, function(){
         console.log(this.response);
         // ここでローカルストレージにuserIDとsessIDを登録
+        localStorage.setItem("guestKey", JSON.stringify(this.response));
         // 自分のユーザーデータを取ってくる（なくてもいい？）
         getUserdata(JSON.parse(this.response)['userID']);
     });
@@ -38,7 +39,7 @@ function getUserdata(user_id) {
     }
     sendjson(data, function(){
         console.log("re = " + this.response);
-        // ここでローカルストレージに登録する
+        // ローカルストレージに登録する
     });
 }
 
@@ -54,5 +55,12 @@ function login(mail, hpass) {
     sendjson(data, function(){
         console.log(this.response);
         // sessIDとuserIDをローカルストレージに登録
+        var tmp = JSON.parse(this.response);
+        console.log("is it json?", isJSON(tmp));
+        if(!("userID" in tmp)) {
+            tmp["userID"] = null;
+            console.log("null");
+        }
+        localStorage.setItem("guestKey", JSON.stringify(tmp));
     });
 }
