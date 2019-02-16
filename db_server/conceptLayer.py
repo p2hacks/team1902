@@ -7,6 +7,55 @@ dbname = 'sprout.db'
 def returnError(errMean):
     return json.dumps({'error': errMean})
 
+#--------ユーザデータ系---------
+def pullData(userID):
+    try:
+        with sqlite3.connect(dbname) as conn:
+            c = conn.cursor()
+            order = 'select * from selfData where id=?'
+            return c.execute(order, (userID,)).fetchone(), None
+    except:
+        return None, 'Error_Get'
+
+def updateData(userID, name, intro, urls, mail, hpass):
+    try:
+        with sqlite3.connect(dbname) as conn:
+            c = conn.cursor()
+            order = 'update selfData set (name,intro,urls,mail,pass) values (?,?,?,?,?) where id=?'
+            c.execute(order, (userID,))
+            conn.commit()
+            return None
+    except:
+        return 'Error_Edit'
+
+def deleteData(userID):
+    try:
+        with sqlite3.connect(dbname) as conn:
+            c = conn.cursor()
+            order = 'delete from selfData where id=?'
+            c.execute(order, (userID,))
+            conn.commit()
+            return None
+    except:
+        return 'Error_Del'
+
+def makeData(mail, hpass):
+    try:
+        with sqlite3.connect(dbname) as conn:
+            c = conn.cursor()
+            #search mail
+            temp = c.execute('select * from selfData where mail=?', (mail,)).fetchone()
+            if temp!=None:
+                return None, 'Error_CreateAccount_Mail'
+
+            name = mail.split('@')[0]
+            order = 'insert into selfData (name, pass, mail) values (?,?,?)'
+            c.execute(order, (name, hpass, mail))
+            conn.commit()
+            return c.execute('select * from selfData where mail=?',(mail,)).fetchone(), None
+    except:
+        return None, 'Error_CreateAccount'
+
 #--------セッション系---------
 sessID = {0:"error"}
 def makeSessID(id):
@@ -65,7 +114,7 @@ def searchMail(mail):
         c = conn.cursor()
         order = 'select * from log where mail=?'
         temp = c.execute(order, (mail,)).fetchone()
-        return 'done' if temp!=None else 'error'
+        return True if temp!=None else False
 
 def delAC(id):
     with sqlite3.connect(dbname) as conn:
@@ -174,3 +223,14 @@ if __name__=='__main__':
     #delList(1, 2)
     #delAC(1)
     '''
+
+if __name__=='__main__':
+        mail = 'tom@gmail.com'
+        hpass = 'tom'
+        data, err = makeData(mail, hpass)
+        if err!=None:
+            print(err)
+        err = deleteData(data[0])
+        if err!=None:
+            print(err)
+        print('the end')
