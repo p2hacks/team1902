@@ -24,14 +24,26 @@ function new_Account(mail, hpass) {
     sendjson(data, function(){
         console.log(this.response);
         // ここでローカルストレージにuserIDとsessIDを登録
-        localStorage.setItem("guestKey", JSON.stringify(this.response));
+        var tmp = JSON.parse(this.response);
+        if(!("userID" in tmp)) tmp["userID"] = null;
+        if(!("userID" in tmp)) tmp["userID"] = null;
+        localStorage.setItem("guestKey", JSON.stringify(tmp));
         // 自分のユーザーデータを取ってくる（なくてもいい？）
-        getUserdata(JSON.parse(this.response)['userID']);
+        if(JSON.parse(this.response)['userID'] != null) get_userData(JSON.parse(this.response)['userID']);
     });
 }
 
 // ユーザーデータを取ってくる関数（ユーザーID）
-function getUserdata(user_id) {
+function get_userData(user_id, callback) {
+    // ローカルストレージにデータがあるならサーバーに要求を送らない！
+    if(!("userData" in localStorage)) {
+		var obj_userData = {
+		}
+		localStorage.setItem("userData", JSON.stringify(obj_userData));
+    }
+    var obj_userData = JSON.parse(localStorage.getItem("userData"));
+
+    // 要求処理
     var data = {
         'method':'get',
         'want':'user',
@@ -40,6 +52,9 @@ function getUserdata(user_id) {
     sendjson(data, function(){
         console.log("re = " + this.response);
         // ローカルストレージに登録する
+        var obj_userData = JSON.parse(localStorage.getItem("userData"));
+        // 元の処理を続ける
+        callback();
     });
 }
 
@@ -56,11 +71,8 @@ function login(mail, hpass) {
         console.log(this.response);
         // sessIDとuserIDをローカルストレージに登録
         var tmp = JSON.parse(this.response);
-        console.log("is it json?", isJSON(tmp));
-        if(!("userID" in tmp)) {
-            tmp["userID"] = null;
-            console.log("null");
-        }
+        if(!("userID" in tmp)) tmp["userID"] = null;
+        if(!("userID" in tmp)) tmp["userID"] = null;
         localStorage.setItem("guestKey", JSON.stringify(tmp));
     });
 }

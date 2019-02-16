@@ -4,23 +4,24 @@ window.addEventListener("load", function(event) {
 	var display_userID = getParam("userID");
 	
 	// 情報の取得（表示するユーザーのID、自分のユーザーIDかチェック、ログインしているか）
-	var guestData = JSON.parse(localStorage.getItem("guestID"));
+	var guestData = JSON.parse(localStorage.getItem("guestKey"));
 	var userID = null;
-	if(guestData != null) if("userID" in guestData) userID = guestData["userID"];
+	if(guestData != null) if("userID" in guestData) userID = Number(guestData["userID"]);
 	if(display_userID == null) display_userID = userID;
-	//if(display_userID == null) location.href = "./index.html";
+	if(display_userID == null) location.href = "./index.html";	// 表示するものがない（ログインしていなくて指定もしていない）
 	
-	// 情報の表示
-	if(userID == null) {					// ログインしていない状態
-		
-	} else if(userID == display_userID) {	// 自分のページ
-		document.getElementById("link_login").style.display = "none";
-	} else if(display_userID != null){		// 他の人のページ
-		document.getElementById("link_login").style.display = "none";
-	}
-	
-	// デバッグ用の表示
-	console.log("userPage.js");
-	console.log("- userID："+userID);
-	console.log("- display_userID："+display_userID);
+	// 表示するデータの取得（コールバック）
+	get_userData(display_userID, function(){
+		// どのページでも同じ情報
+		document.getElementById("userPage_userID").innerText = "ID："+display_userID;
+
+		// 情報の表示
+		if(userID == null) {					// ログインしていない状態
+			
+		} else if(userID == display_userID) {	// 自分のページ
+			
+		} else if(display_userID != null){		// 他の人のページ
+			
+		}
+	});
 });
