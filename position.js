@@ -1,4 +1,4 @@
-
+﻿
 async function getPosition(){//　状態・経度・緯度
 	var a = await getposition();
 	var obj={
@@ -8,6 +8,7 @@ async function getPosition(){//　状態・経度・緯度
 	};
 	var json = JSON.stringify( obj );
 	console.log(json);
+	alert(json);
 	return json;
 }
 
