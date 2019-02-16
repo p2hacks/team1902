@@ -1,5 +1,5 @@
+
 async function getPosition(){//　状態・経度・緯度
-	console.log('hoge');
 	var a = await getposition();
 	var obj={
 		"code" : a[0],
