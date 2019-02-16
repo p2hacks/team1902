@@ -11,71 +11,66 @@ app = Flask(__name__)
 CORS(app)
 app.config['UPLOAD_FOLDER'] = './prof_imgs'
 
-@app.route("/post", methods=['POST'])
-def getData():
-    data = request.form['user']
-    return getUser(int(data))
-
 @app.route("/post/json", methods=['POST'])
 def getjson():
     data = request.json
     print(data)
     
     if data['method']=='get':
-        if data['want']=='login':
+        if data['want']=='login':#remake
             return login(data['send']['mail'], data['send']['pass'])
-        elif data['want']=='user':
-            temp = getUser(data['send']['userID'])
-            return temp
-        elif data['want']=='list':
-            user_id = sessToUser(data['send']['sessID'])
-            return getListOfList(user_id)
-        elif data['want']=='post':
-            user_id = sessToUser(data['send']['sessID'])
-            postID = []
-            return postID
+        elif data['want']=='user':#remake
+            return getUserJson(int(data['send']['userID']))
+        elif data['want']=='list':#remake
+            return getListOfList(int(data['send']['userID']), data['send']['sessID'])
+        elif data['want']=='post':#No
+            return 'no make'
 
     elif data['method']=='create':
-        if data['want']=='user':
+        if data['want']=='user':#remake
             return userRegister(data['send']['mail'], data['send']['pass'])
-        elif data['want']=='list':
-            makeList(sessToUser(data['send']['sessID']), data['send']['listname'], data['send']['ids'])
+        elif data['want']=='list':#check
+            makeList(int(data['send']['userID']), data['send']['listname'], data['send']['ids'])
 
     elif data['method']=='delete':
-        if data['want']=='user':
-            return userDestroy(data['send']['sessID'])
-        elif data['want']=='list':
-            delList(sessToUser(data['send']['sessID']), data['send']['listID'])
+        if data['want']=='user':#remake
+            return userDestroy(int(data['send']['userID']), data['send']['sessID'])
+        elif data['want']=='list':#remake
+            return listDestroy(int(data['send']['userID']), data['send']['sessID'], int(data['send']['listID']))
 
     elif data['method']=='update':
         if data['want']=='user':
             return data['send']['hoge']
+        elif data['want']=='list':
+            return ''
 
     elif data['method']=='send':
         if data['want']=='post':
             pass
-        elif data['want']=='logout':
-            logout(data['send']['sessID'])
+        elif data['want']=='logout':#remake
+            return logout(int(data['send']['userID']), data['send']['sessID'])
 
-@app.route("/post/image", methods=['POST'])
-def getimg():
-    if request.form['method']=='update':
-        user_id = request.form['sessID'] #sessToUser(request.form['sessID'])
-        if user_id=='error':
-            return 'sessID error'
-        img_file = request.files['prof_img']
-        img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg"))
-        return 'done'
-
-    elif request.form['method']=='get':
-        user_id = sessToUser(request.form['sessID'])
-        if user_id=='error':
-            return 'sessID error'
-        return send_from_directory(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg")
-
-@app.route("/post/Gimage", methods=['POST'])
-def getimgs():
+@app.route("/post/Fimage", methods=['POST'])
+def sendFromClient():
+    #remake
     userID = request.form['userID']
+    sessID = request.form['sessID']
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
+    
+    img_file = request.files['prof_img']
+    img_file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(userID)+".jpg"))
+    return 'done'
+
+@app.route("/post/Timage", methods=['POST'])
+def sendToCliant():
+    #remake
+    userID = request.form['userID']
+    sessID = request.form['sessID']
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
     try:
         return send_from_directory(app.config['UPLOAD_FOLDER'], str(userID)+".jpg")
     except:

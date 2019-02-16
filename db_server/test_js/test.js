@@ -162,8 +162,7 @@ function newAcount(mail, hpass) {
         console.log(this.response);
         //今回テストなのでアカウントを作って消した
         temp = JSON.parse(this.response);
-        getUserdata(temp['userID']);
-        //userdelete(temp['sessID']);
+        userdelete(temp['sessID']);
     })
 }
 
