@@ -18,24 +18,26 @@ def getData():
 @app.route("/post/json", methods=['POST'])
 def getjson():
     data = request.json
+    print(data)
     
     if data['method']=='get':
-        user_id = sessToUser(data['send']['sessID'])
         if data['want']=='login':
+            user_id = sessToUser(data['send']['sessID'])
             return login(data['send']['name'], data['send']['pass'])
         elif data['want']=='user':
-            if user_id == 'error':
-                user_id = data['send']['user_id']
-            return getUser(user_id)
+            temp = getUser(data['send']['userID'])
+            return temp
         elif data['want']=='list':
+            user_id = sessToUser(data['send']['sessID'])
             return getListOfList(user_id)
         elif data['want']=='post':
+            user_id = sessToUser(data['send']['sessID'])
             postID = []
             return postID
 
     elif data['method']=='create':
         if data['want']=='user':
-            return userRegister(data['send']['name'], data['send']['pass'])
+            return userRegister(data['send']['mail'], data['send']['pass'])
         elif data['want']=='list':
             makeList(sessToUser(data['send']['sessID']), data['send']['listname'], data['send']['ids'])
 
@@ -70,6 +72,14 @@ def getimg():
         if user_id=='error':
             return 'sessID error'
         return send_from_directory(app.config['UPLOAD_FOLDER'], str(user_id)+".jpg")
+
+@app.route("/post/Gimage", methods=['POST'])
+def getimgs():
+    userID = request.form['userID']
+    try:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], str(userID)+".jpg")
+    except:
+        return send_from_directory(app.config['UPLOAD_FOLDER'], "default.jpg")
 
 if __name__=='__main__':
     #外部 app.run(host='0.0.0.0', port=3000, threaded=True)

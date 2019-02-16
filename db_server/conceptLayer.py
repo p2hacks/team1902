@@ -28,23 +28,24 @@ def sessToUser(id):
         return sessID[0]
 
 #--------アカウントデータ系---------
-def makeAC(name, hpass):
+def makeAC(mail, hpass):
     '''
     idをどう指定したら良いかわからん
     1, 2作成後1削除すると次作られるのは3
     '''
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
-        order = 'insert into log (name, pass) values (?,?)'
-        c.execute(order, (name, hpass))
+        name = mail.split('@')[0]
+        order = 'insert into log (name, pass, mail) values (?,?,?)'
+        c.execute(order, (name, hpass, mail))
         conn.commit()
 
-def checkAC(name, hpass):
+def checkAC(mail, hpass):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
-        order = 'select id from log where name=? and pass=?'
+        order = 'select id from log where mail=? and pass=?'
         try:
-            return c.execute(order, (name, hpass)).fetchone()[0]
+            return c.execute(order, (mail, hpass)).fetchone()[0]
         except:
             return 'error'
 
@@ -84,7 +85,9 @@ def getUser(id):
     with sqlite3.connect(dbname) as conn:
         c = conn.cursor()
         order = 'select * from selfData where id=?'
+        print('do')
         try:
+            
             datas = c.execute(order, (id,)).fetchone()
             dictdata = {
             "user":{

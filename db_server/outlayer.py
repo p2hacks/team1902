@@ -15,12 +15,12 @@ def login(name, hpass):
 def logout(sess_id):
     delSessID(sess_id)
 
-def userRegister(name, hpass):
-    makeAC(name, hpass)
-    user_id = checkAC(name, hpass)
-    addUser(user_id, name, "","","")
+def userRegister(mail, hpass):
+    makeAC(mail, hpass)
+    user_id = checkAC(mail, hpass)
+    addUser(user_id, mail.split('@')[0], "hoge","hoge","hoge")
     makeList(user_id, "default", "")
-    return str(makeSessID(user_id))
+    return json.dumps({'sessID': str(makeSessID(user_id)), 'userID': str(user_id)})
 
 def userDestroy(sess_id):
     try:
@@ -34,3 +34,7 @@ def userDestroy(sess_id):
         return 'done'
     except:
         return 'error'
+
+#temp = userRegister('tom@gmail.com', 'aaaa')
+#print(getUser('1'))
+#userDestroy(int(temp['sessID']))
