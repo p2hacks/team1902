@@ -20,22 +20,15 @@
 	
 	<!-- アイコン、ユーザ名、ユーザID -->
 	<img class="userPage_userIcon">
-	<div class="userPage_userName">ユーザーネーム</div>
+	<div class="userPage_userName" id="userPage_userName"></div>
 	<div class="userPage_userID" id="userPage_userID">ID：null</div>
 	
 	<!-- URL（ul/li） -->
-	<ul class="userPage_listURL">
-		<a href="https://github.com/TomSuzuki" class="userPage_listURL_text">https://github.com/TomSuzuki</a>
-		<a href="https://github.com/TomSuzuki" class="userPage_listURL_text">https://github.com/TomSuzuki</a>
+	<ul class="userPage_listURL" id="userPage_listURL">
 	</ul>
 	
 	<!-- 自己紹介（pre） -->
-	<pre class="userPage_profile">
-自己紹介の文章
-改行ってbr？<br>
-brも使える感じか...？
-<small>他のタグは？</small>
-改行が...</pre>
+	<pre class="userPage_profile" id="userPage_profile"></pre>
 	
 	
 	<!-- 取得した日時場所の情報（取得済みなら） -->
@@ -47,7 +40,7 @@ brも使える感じか...？
 	<!-- 上部固定表示 -->
 	<div class="topTab_base">
 		<!-- 戻るボタン（ログイン時かつ、自分のページでないときのみ表示（基本非表示）） -->
-		<a class="backButton_base" href="javascript:history.back()" target="_self" id="link_back" style="display: none;">
+		<a id="userPage_backButton" class="backButton_base" href="javascript:history.back()" target="_self" id="link_back" style="display: none;">
 			<div class="backButton_text">←</div>
 		</a>
 		
@@ -62,7 +55,7 @@ brも使える感じか...？
 		</div>
 		
 		<!-- 設定ボタン（自分のページなら） -->
-		<div class="topTab_buttonOuter" style="display: none;">
+		<div id="userPage_myPage" class="topTab_buttonOuter" style="display: none;">
 			<a class="button_Base1" href="./userSetting.html" target="_self" style="width: 100%; top:4px;">
 				<div class="button_Text1">設定</div>
 			</a>

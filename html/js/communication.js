@@ -27,9 +27,8 @@ function new_Account(mail, hpass) {
         var tmp = JSON.parse(this.response);
         if(!("userID" in tmp)) tmp["userID"] = null;
         if(!("userID" in tmp)) tmp["userID"] = null;
+        localStorage.clear();
         localStorage.setItem("guestKey", JSON.stringify(tmp));
-        // 自分のユーザーデータを取ってくる（なくてもいい？）
-        if(JSON.parse(this.response)['userID'] != null) get_userData(JSON.parse(this.response)['userID']);
     });
 }
 
@@ -37,11 +36,15 @@ function new_Account(mail, hpass) {
 function get_userData(user_id, callback) {
     // ローカルストレージにデータがあるならサーバーに要求を送らない！
     if(!("userData" in localStorage)) {
-		var obj_userData = {
-		}
+		var obj_userData = []
 		localStorage.setItem("userData", JSON.stringify(obj_userData));
     }
     var obj_userData = JSON.parse(localStorage.getItem("userData"));
+    var index = obj_userData.findIndex(({userID}) => userID === user_id);
+    if(index != -1) {
+        callback();
+        return;
+    }
 
     // 要求処理
     var data = {
@@ -51,8 +54,10 @@ function get_userData(user_id, callback) {
     }
     sendjson(data, function(){
         console.log("re = " + this.response);
-        // ローカルストレージに登録する
+        // ローカルストレージに登録する（同じユーザーIDは存在しないので単純に加えるだけ）
         var obj_userData = JSON.parse(localStorage.getItem("userData"));
+        obj_userData.push(JSON.parse(this.response)["user"]);
+        localStorage.setItem("userData", JSON.stringify(obj_userData));
         // 元の処理を続ける
         callback();
     });
@@ -73,6 +78,7 @@ function login(mail, hpass) {
         var tmp = JSON.parse(this.response);
         if(!("userID" in tmp)) tmp["userID"] = null;
         if(!("userID" in tmp)) tmp["userID"] = null;
+        localStorage.clear();
         localStorage.setItem("guestKey", JSON.stringify(tmp));
     });
 }
