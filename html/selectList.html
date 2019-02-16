@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="./css/base.css" type="text/css">
 	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
 	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<script type="text/javascript" src="./js/selectList.js"></script>
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -29,9 +31,24 @@
 		<a class="backButton_base" href="javascript:history.back()" target="_self"><div class="backButton_text">←</div></a>
 		<div class="userList_titleText">リスト</div>
 		<div class="userList_editButton">
-			<a class="button_Base1" href="./" target="_self" style="width: 100%; top:4px;">
+			<a class="button_Base1" style="width: 100%; top:4px;" id="newList_create">
 				<div class="button_Text1">新規</div>
 			</a>
+		</div>
+	</div>
+	
+	<!-- 新規作成用やつ（defaultはnone：OverlapWinsowをクリックで再度none） -->
+	<div class="OverlapWinsow" id="OverlapWinsow" style="display: none;">
+		<div class="newList_parent">
+			<div style="width: 80%; position: relative; left: 50%; transform:translateX(-50%); padding: 16px 0px;">
+				<div class="login_info2">新しいリストの名前</div>
+				<input class="login_input" type="text" id="new_listName">
+				<div style="height: 24px; width:100%;"></div>
+				<div class="loginButton_base" style="margin: 0px;">
+					<a class="button_Base2" style="width:100%; margin: 3px;" id="newList_cancel"><div class="button_Text2">キャンセル</div></a>
+					<a class="button_Base1" style="width:100%; margin: 3px;" id="newList_decided"><div class="button_Text1">確定</div></a>
+				</div>
+			</div>
 		</div>
 	</div>
 

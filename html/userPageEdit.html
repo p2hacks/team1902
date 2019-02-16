@@ -2,20 +2,56 @@
 <head>
 	<meta charset="utf-8">
 	<title>Sprout</title>
+	<link rel="shortcut icon"type="image/png" href="./img/icon.png">
 	<link rel="stylesheet" href="./css/base.css" type="text/css">
 	<link rel="stylesheet" href="./css/scrollbar.css" type="text/css">
 	<script type="text/javascript" src="./js/main.js"></script>
+	<script type="text/javascript" src="./js/function.js"></script>
+	<script type="text/javascript" src="./js/userPageEdit.js"></script>
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="scroll">
 	
+	<!-- 上部タブ用の高さを確保する -->
+	<div style="height: 64px; width:100%;"></div>
+	<div style="height: 12px; width:100%;"></div>
 	
-	<!-- キャンセル＆保存ボタン -->
-	<div style="height: 48px;"></div>
-	<div class="underButton_base">
-		<a href="" class="button_Base2" style="width: 50%;"><div class="button_Text2">キャンセル</div></a>
-		<a href="" class="button_Base1" style="width: 50%;"><div class="button_Text1">保存</div></a>
+	<!-- 編集 -->
+	<div class="login_parent" style="margin: 24px 0px; height: auto; position: static;">
+		<div class="login_base" style="width: 80%;">
+			<!-- アイコン編集 -->
+			<img class="userPage_userIcon">
+			 <div style="clear: both;"></div>
+			<a class="link_text">アイコンを削除</a>
+			<div style="height: 24px; width:100%;"></div>
+			
+			<!-- 表示名編集 -->
+			<div style="height: 24px; width:100%;"></div>
+			<div class="button_Text1">表示名の編集</div>
+			<input class="login_input" style="border-bottom-color: var(--mainColor); color: var(--textColor3);" type="text" name="new_userName">
+			
+			<!-- URL編集（削除ボタン、追加ボタン未実装：リスト化？） -->
+			<div style="height: 24px; width:100%;"></div>
+			<div class="button_Text1">URLの編集</div>
+			<input class="login_input" style="border-bottom-color: var(--mainColor); color: var(--textColor3);" type="text" name="new_url_1">
+			
+			<!-- 自己紹介編集 -->
+			<div style="height: 24px; width:100%;"></div>
+			<div class="button_Text1">自己紹介の編集</div>
+			<textarea id="edit_profile" class="login_input" style="border-bottom-color: var(--mainColor); color: var(--textColor3); resize: none; overflow: hidden;" type="text" name="new_url_1"></textarea>
+		</div>
+	</div>
+	
+	<!-- 上部タブ -->
+	<div class="userList_title">
+		<a class="backButton_base" href="javascript:history.back()" target="_self"><div class="backButton_text">←</div></a>
+		<div class="userList_titleText">プロフィールの編集</div>
+		<div class="userList_editButton">
+			<a class="button_Base1" style="width: 100%; top:4px;" id="newList_create">
+				<div class="button_Text1">確定</div>
+			</a>
+		</div>
 	</div>
 	
 </body>
