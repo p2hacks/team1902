@@ -19,31 +19,26 @@
 	</div>
 	
 	<!-- ログインフォーム -->
-	<div class="login_parent">
-		<div class="login_base">
-			<div class="login_info2">ログイン</div>
-			<div style="height: 12px;"></div>
-			<div class="login_info">ユーザーID or メールアドレス</div>
-			<input class="login_input" type="text" id="userKey">
-			<div style="height: 12px;"></div>
-			<div class="login_info">パスワード</div>
-			<input class="login_input" type="password" id="userPass">
-		</div>
+	<div class="input_base">
+		<div class="input_title">ログイン</div>
+		<div class="input_info">ユーザーID or メールアドレス</div>
+		<input class="input_box" type="text" id="userKey">
+		<div class="input_info">パスワード</div>
+		<input class="input_box" type="password" id="userPass">
 	</div>
 	
 	<!-- ログインボタン（JavaScript未実装） -->
-	<div class="loginButton_base" style="display: block;">
+	<div class="button_outer" style="display: block;">
 		<a id="login" class="button_Base2"><div class="button_Text2">ログイン</div></a>
-		<div class="login_info" id="errorMsg"></div>
+		<div class="input_info" id="errorMsg"></div>
 	</div>
 	
 	<!-- アカウント作成ボタン -->
 	<div style="height: 48px;"></div>
-	<div class="loginButton_base" style="display: block;">
-		<div class="login_info">※アカウントをお持ちでない場合は</div>
+	<div class="button_outer" style="display: block;">
+		<div class="input_info">※アカウントをお持ちでない場合は</div>
 		<a href="createAccount.html" class="button_Base1"><div class="button_Text1">アカウント作成</div></a>
 	</div>
-	<div style="height: 24px;"></div>
 	
 </body>
 </html>

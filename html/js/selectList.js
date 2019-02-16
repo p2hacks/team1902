@@ -10,11 +10,6 @@ window.addEventListener("load", function(event) {
 		document.getElementById("OverlapWinsow").style.display = "none";
 	};
 	
-	// 暗くなっている部分を押しても消す
-	document.getElementById("OverlapWinsow").onclick = function() {
-		document.getElementById("OverlapWinsow").style.display = "none";
-	};
-	
 	// 確定を押したら画面を消してサーバーに新規リストのリクエストを行い、リストを更新する
 	document.getElementById("newList_decided").onclick = function() {
 		document.getElementById("OverlapWinsow").style.display = "none";
