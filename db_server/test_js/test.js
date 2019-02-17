@@ -1,5 +1,6 @@
 var xhr = new XMLHttpRequest();
-var HOST = 'http://113.213.215.192:3000/post' //'http://localhost:3000/post';
+//var HOST = 'http://113.213.215.192:3000/post';
+var HOST = 'http://localhost:3000/post';
 
 function sendData(datas, callback) {
     // json形式のdatasを受け取り、callback関数に対して返します
@@ -41,6 +42,7 @@ function sendjson(requestData, callback){
     xhr.send(requestData);
 
     xhr.onreadystatechange = function() {
+        //console.log(xhr)
         if(xhr.readyState==4 && (xhr.status==200||xhr.status==304)){
             callback.apply(xhr);
         }
@@ -88,7 +90,7 @@ function controle_image(method, sessID, imagefile) {
     }
 }
 
-function getImg(){
+function getImg(userID, calltag){
     // 画像を取得し、表示させる関数になってます
     xhr.open('POST', HOST+'/Gimage', true);
     xhr.onload = function() {
@@ -99,15 +101,22 @@ function getImg(){
         };
         image.src = oURL;
         image.height = 60;
-        var tagg = document.getElementById("images");
-        tagg.appendChild(image)
+        calltag.appendChild(image)
+        //var tagg = document.getElementById("images");
+        //tagg.appendChild(image)
     };
+
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
     //返答の仕方を設定
     xhr.responseType = 'blob';
     // 今回はnull送ってます
-    xhr.send(null)
+    xhr.send('userID='+userID)
     console.log(xhr.response);
+}
+
+function viewImg() {
+    var pair = document.getElementById("images");
+    getImg(2, pair)
 }
 
 function sendImg(){
@@ -141,18 +150,19 @@ function login(name, hpass) {
     })
 }
 
-function newAcount(name, hpass) {
-    if(!name)name='tom';
+function newAcount(mail, hpass) {
+    if(!mail)mail='tom@gmail.com';
     if(!hpass)hpass='tom';
     var data = {
         'method':'create',
         'want':'user',
-        'send':{'name':name, 'pass':hpass}
+        'send':{'mail':mail, 'pass':hpass}
     }
     sendjson(data, function(){
-        console.log('sessID = '+this.response);
+        console.log(this.response);
         //今回テストなのでアカウントを作って消した
-        userdelete(this.response);
+        temp = JSON.parse(this.response);
+        userdelete(temp['sessID']);
     })
 }
 
@@ -167,14 +177,14 @@ function userdelete(sessID) {
     })
 }
 
-function getUserdataNull(user_id) {
+function getUserdata(user_id) {
     var data = {
         'method':'get',
         'want':'user',
-        'send':{'sessID':0,'user_id':user_id}
+        'send':{'userID':user_id}
     }
     sendjson(data, function(){
-        console.log(this.response);
+        console.log("re = " + this.response);
     })
 }
 

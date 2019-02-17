@@ -1,36 +1,116 @@
 from conceptLayer import *
 import json
 
-def getListOfList(user_id):
-    data = [getListData(user_id, i) for i in getListID(user_id)]
+#--------チェック系---------
+def checksessID(userID, sessID):
+    data, err = pullData(userID)
+    if err!=None:
+        return err
+    if data[0]==userID and data[6]==sessID:
+        return None
+    return 'Error_UserID_SessID'
+
+#--------形式変更系---------
+def returnError(errMean):
+    return json.dumps({'error': errMean})
+
+def returnSessUser(userID, sessID):
+    return json.dumps({'sessID': str(sessID), 'userID': str(userID)})
+
+def getListOfList(userID, sessID):
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
+
+    data, err = getListID(userID)
+    if err!=None:
+        return returnError(err)
+    
+    reData = []
+    for i in data:
+        data, err = getListData(userID, i)
+        if err!=None:
+            return returnError(err)
+        else:
+            reData.append(data)
     return json.dumps(data)
 
-def login(name, hpass):
-    id = checkAC(name, hpass)
-    if id!=0:
-        return str(makeSessID(id))
+#--------ユーザーデータ系---------
+def login(mail, hpass):
+    data, err = loginData(mail, hpass)
+    if err!=None:
+        return returnError(err)
     else:
-        return 0
+        return returnSessUser(data[0], data[6])
 
-def logout(sess_id):
-    delSessID(sess_id)
-
-def userRegister(name, hpass):
-    makeAC(name, hpass)
-    user_id = checkAC(name, hpass)
-    addUser(user_id, name, "","","")
-    makeList(user_id, "default", "")
-    return str(makeSessID(user_id))
-
-def userDestroy(sess_id):
-    try:
-        user_id = sessToUser(int(sess_id))
-        delSessID(sess_id)
-        list_id = getListID(user_id)
-        for i in list_id:
-            delList(user_id, i)
-        delUser(user_id)
-        delAC(user_id)
+def logout(userID, sessID):
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
+    
+    data, err = pullData(userID)
+    if err!=None:
+        return returnError(err)
+    
+    err = updateData(data[0], data[1], data[2], data[3], data[4], data[5], '')
+    if err!=None:
+        return returnError(err)
+    else:
         return 'done'
-    except:
-        return 'error'
+
+def userRegister(mail, hpass):
+    data, err = makeData(mail, hpass)
+    if err!=None:
+        return returnError(err)
+    err = makeList(data[0], 'default', '')
+    if err!=None:
+        return returnError(err)
+    return returnSessUser(data[0], data[6])
+
+def userDestroy(userID, sessID):
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
+    
+    listID, err = getListID(userID)
+    if err!=None:
+        return returnError(err)
+    
+    for i in listID:
+        err = delList(userID, i)
+        if err!=None:
+            return returnError(err)
+    
+    err = deleteData(userID)
+    if err!=None:
+        return returnError(err)
+    else:
+        return 'done'
+
+def listDestroy(userID, sessID, listID):
+    err = checksessID(userID, sessID)
+    if err!=None:
+        return returnError(err)
+    
+    err = delList(userID, listID)
+    if err!=None:
+        return returnError(err)
+    return 'done'
+
+def getUserJson(userID):
+    data, err = pullData(userID)
+    if err!=None:
+        return returnError(err)
+    
+    return json.dumps({
+        "user":{
+		"userID": data[0],
+		"userName": data[1],
+		"userURL": data[3].split(','),
+		"userProfile":data[2]
+	}
+    })
+
+#temp = userRegister('tom@gmail.com', 'aaaa')
+#print(getUser('1'))
+#userDestroy(int(temp['sessID']))

@@ -8,7 +8,21 @@ window.addEventListener("load", function(event) {
 		
 		// 文字の表示
 		document.getElementById("errorMsg").innerHTML = "";
-		if(userKey == "" || userPass == "") document.getElementById("errorMsg").innerHTML = "※ユーザー情報が入力されていません。";
+		if(userKey == "" || userPass == ""){
+			document.getElementById("errorMsg").innerHTML = "※ユーザー情報が入力されていません。";
+			return;
+		}
+
+		// サーバーにコマンドを送る
+		login(userKey, userPass, function(res){
+			res = JSON.parse(res);
+			if(res["error"]) {
+				document.getElementById("errorMsg").innerHTML = "※ログイン情報が間違っています。";
+				return;
+			}
+			// 問題なく動作した
+			location.href = "./userPage.html";
+		});
 	};
 });
 
