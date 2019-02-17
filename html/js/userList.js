@@ -1,26 +1,71 @@
-// ‰æ–Êƒ[ƒhŒã‚ÉÀs
+// ç”»é¢ãƒ­ãƒ¼ãƒ‰å¾Œã«å®Ÿè¡Œ
 window.addEventListener("load", function(event) {
-	// ƒpƒ‰ƒ[ƒ^‚Ìæ“¾
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–å¾—
 	var listID = getParam("listID");
-	var guestID = localStorage.setItem("guestID", JSON.stringify(obj_guestID));
+	var obj_listData = JSON.parse(localStorage.getItem("userList"));
+	if(obj_listData == null) return;
+	var userID_list = obj_listData[obj_listData.findIndex(({listID}) => listID === listID)];
+	var ls = null;
+	if("userID" in userID_list) ls = userID_list["userID"];
+	console.log(ls);
+	if(ls == null) return;
+
+	// ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šã«è¡Œã
+	new Promise((resolve,reject) => {
+		for( var i=0; i<ls.length; i++) {
+			get_userData(Number(ls[i]),function(){});
+		}
+		resolve();
+	})
+	.then(() => {
+		// æç”»
+		for( var i=0; i<ls.length; i++) {
+			user_id = Number(ls[i]);
+			var obj_userData = JSON.parse(localStorage.getItem("userData"));
+			var index = obj_userData.findIndex(({userID}) => userID === user_id);
+			if(index == -1) return;
+			userID = obj_userData[index]["userID"];
+			userName = obj_userData[index]["userName"];
+			// è¿½åŠ 
+			var ele = document.createElement("a");
+			var str = document.createTextNode(userName);
+			var str_id = document.createTextNode("ID: "+userID);
+			var ele2 = document.createElement("div");
+			var ele_id = document.createElement("div");
+			var ele_img = document.createElement("div");
+			var ele_dummy = document.createElement("div");
+			ele2.className = "list_boldTitle";
+			ele_id.className = "list_boldID";
+			ele_dummy.className = "list_boldIcon";
+			ele2.appendChild(str);
+			ele_id.appendChild(str_id);
+			ele_dummy.id = "dummy_"+userID;
+			ele_img.id = "list_boldIcon_"+userID;
+			ele.href = "./userPage.html?userID="+userID;
+			ele.className = "list_boldBase";
+			ele.appendChild(ele2);
+			ele.appendChild(ele_id);
+			ele.appendChild(ele_img);
+			ele.appendChild(ele_dummy);
+			document.getElementById("list_outer").appendChild(ele);
+			getImg_forLS(userID,document.getElementById("list_boldIcon_"+userID),function(){
+				document.getElementById("dummy_"+userID).style="display: none;";
+			});
+		}
+	})
 	
-	// •`‰æ‚É•K—v‚Èƒf[ƒ^‚ª—L‚é‚©ƒ`ƒFƒbƒN
-	
-		// ‚È‚¢‚È‚çæ‚è‚É‚És‚­
-		
-		// ‚ ‚é‚È‚ç•`‰æ
 });
 
-// •`‰æ‚·‚éŠÖ”iƒf[ƒ^‚ª‘S‚Älocal Storage“à‚É‚ ‚é‚±‚Æ‚ª‘O’ñj
+// æç”»ã™ã‚‹é–¢æ•°ï¼ˆãƒ‡ãƒ¼ã‚¿ãŒå…¨ã¦local Storageå†…ã«ã‚ã‚‹ã“ã¨ãŒå‰æï¼‰
 function display_userList(listID){
 	
 }
 
-// ƒf[ƒ^‚ª–³‚¢‚È‚çæ‚è‚És‚­
+// ãƒ‡ãƒ¼ã‚¿ãŒç„¡ã„ãªã‚‰å–ã‚Šã«è¡Œã
 function get_userList(listID){
-	// ƒ†[ƒU[ID‚ğæ‚è‚És‚­i‚±‚ê‚Ílocal Storage“à‚É‚ ‚é‚Í‚¸j
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼IDã‚’å–ã‚Šã«è¡Œãï¼ˆã“ã‚Œã¯local Storageå†…ã«ã‚ã‚‹ã¯ãšï¼‰
 	
-	// ƒ†[ƒU[ƒf[ƒ^‚ğæ‚è‚És‚­
+	// ãƒ¦ãƒ¼ã‚¶ãƒ¼ãƒ‡ãƒ¼ã‚¿ã‚’å–ã‚Šã«è¡Œã
 }
 
 
