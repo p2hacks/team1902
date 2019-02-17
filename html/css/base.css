@@ -181,6 +181,10 @@ a:active {
 	font-weight: normal;
 	margin: 2px 2px 0px 2px;
 	padding: 5px 8px;
+	max-width: 100%;
+	height: auto;
+	overflow-wrap : break-word;
+	word-break : break-all;
 }
 
 /* ユーザーページのID */

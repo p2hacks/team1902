@@ -3,7 +3,7 @@ window.addEventListener("load", function(event) {
 	// サーバーにリストの要求
 	var obj_userData = JSON.parse(localStorage.getItem("guestKey"));
 	get_list(obj_userData["userID"], obj_userData["sessID"], function(res){
-		var obj_userList = [JSON.parse(localStorage.getItem("userList"))];
+		var obj_userList = JSON.parse(localStorage.getItem("userList"));
 		// リストの追加
 		obj_userList.forEach(function(key){
 			var ele = document.createElement("a");
