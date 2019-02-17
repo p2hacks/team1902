@@ -13,7 +13,7 @@ function sendjson(requestData, callback){
 }
 
 // 新規アカウントを作成する関数（メアド、ハッシュ化されたパスワード）
-function new_Account(mail, hpass) {
+function new_Account(mail, hpass, callback) {
     if(!mail) mail='null';
     if(!hpass) hpass='null';
     var data = {
@@ -26,9 +26,10 @@ function new_Account(mail, hpass) {
         // ここでローカルストレージにuserIDとsessIDを登録
         var tmp = JSON.parse(this.response);
         if(!("userID" in tmp)) tmp["userID"] = null;
-        if(!("userID" in tmp)) tmp["userID"] = null;
+        if(!("sessID" in tmp)) tmp["sessID"] = null;
         localStorage.clear();
         localStorage.setItem("guestKey", JSON.stringify(tmp));
+        callback(this.response);
     });
 }
 
@@ -64,7 +65,7 @@ function get_userData(user_id, callback) {
 }
 
 // ログインを行う（メアド、ハッシュ化されたパスワード）
-function login(mail, hpass) {
+function login(mail, hpass, callback) {
     if(!mail) mail='null';
     if(!hpass) hpass='null';
     var data = {
@@ -77,8 +78,9 @@ function login(mail, hpass) {
         // sessIDとuserIDをローカルストレージに登録
         var tmp = JSON.parse(this.response);
         if(!("userID" in tmp)) tmp["userID"] = null;
-        if(!("userID" in tmp)) tmp["userID"] = null;
+        if(!("sessID" in tmp)) tmp["sessID"] = null;
         localStorage.clear();
         localStorage.setItem("guestKey", JSON.stringify(tmp));
+        callback(this.response);
     });
 }

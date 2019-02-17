@@ -21,7 +21,7 @@ window.addEventListener("load", function(event) {
 		document.getElementById("userPage_userName").innerText = userData["userName"];
 		document.getElementById("userPage_userID").innerText = "ID："+display_userID;
 		document.getElementById("userPage_profile").innerText = userData["userProfile"];
-		userData["userURL"].forEach(function(val,i){
+		userData["userURL"].forEach(function(val){
 			var ele = document.createElement("a");
 			var str = document.createTextNode(val);
 			ele.href = val;
@@ -34,7 +34,10 @@ window.addEventListener("load", function(event) {
 		if(userID == null) {					// ログインしていない状態
 			
 		} else if(userID == display_userID) {	// 自分のページ
+			console.log("自分のペーじs");
 			document.getElementById("userPage_myPage").style = "display: block;";
+			document.getElementById("userPage_userList").style = "display: felx;";
+			
 		} else if(display_userID != null){		// 他の人のページ
 			document.getElementById("userPage_backButton").style = "display: block;";
 
