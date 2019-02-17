@@ -104,8 +104,9 @@ function login(mail, hpass, callback) {
 
 // ログアウト
 function logout(userID, sessID, callback) {
-    if(!mail) mail='null';
-    if(!hpass) hpass='null';
+    var guestData = JSON.parse(localStorage.getItem("guestKey"));
+    if(!userID) userID=guestData["userID"];
+    if(!sessID) sessID=guestData["sessID"];
     var data = {
         'method':'send',
         'want':'logout',
@@ -134,7 +135,7 @@ function send_pos(userID, sessID, posx, posy, callback) {
 }
 
 // 認証済みかチェックする
-function get_chk(userID, sessID, allback) {
+function get_chk(userID, sessID, callback) {
     if(!userID) userID='null';
     if(!sessID) sessID='null';
     var data = {
@@ -143,8 +144,6 @@ function get_chk(userID, sessID, allback) {
         'send':{'userID': userID, 'sessID': sessID}
     }
     sendjson(data, function(){
-        console.log("send");
-        console.log(this.response);
         callback(this.response);
     });
 }

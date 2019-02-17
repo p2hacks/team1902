@@ -12,7 +12,8 @@ window.addEventListener("load", function(event) {
     var obj_guestKey = JSON.parse(localStorage.getItem("guestKey"));
 	
 	get_chk(obj_guestKey["userID"], obj_guestKey["sessID"], function(res){
-		if(res == "true") location.href = "./userPage.html";
-		location.href = "./loginSelect.html";
-	});s
+		console.log(res);
+		//if(res == "True") location.href = "./userPage.html";
+		//location.href = "./loginSelect.html";
+	});
 });
