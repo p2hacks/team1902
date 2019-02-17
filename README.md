@@ -1,5 +1,5 @@
 # Sprout
-![ロゴ](P2HACKS.png)
+![ロゴ](Sprout.png)
 
 ## 製品概要
 ### 位置情報を利用した自己紹介Webアプリ
