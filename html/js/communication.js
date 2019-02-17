@@ -147,3 +147,28 @@ function get_chk(userID, sessID, callback) {
         callback(this.response);
     });
 }
+
+// 画像データをサーバから受け取る
+function getImg(userID, calltag, callback){
+    // 画像を取得し、表示させる関数になってます
+    xhr.open('POST', HOST+'/Timage', true);
+    xhr.onload = function() {
+        console.log(this.response);
+        var oURL = URL.createObjectURL(this.response);
+        var image = new Image();
+        image.onload = function() {
+            URL.revokeObjectURL(oURL);
+        };
+        image.src = oURL;
+        image.className = "userPage_userIcon";
+        calltag.appendChild(image);
+        callback();
+    };
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8');
+    //返答の仕方を設定
+    xhr.responseType = 'blob';
+    //var formdata = new FormData();
+    xhr.send('userID='+userID);
+    //xhr.send(formdata);
+    console.log(xhr.response);
+}

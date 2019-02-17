@@ -29,6 +29,11 @@ window.addEventListener("load", function(event) {
 			ele.appendChild(str);
 			document.getElementById("userPage_listURL").appendChild(ele);
 		});
+
+		// アイコン
+		getImg(display_userID, document.getElementById("userPage_userIcon"), function(){
+			document.getElementById("img_dummy").style = "display: none;";
+		});
 		
 		// 情報の表示
 		if(userID == null) {					// ログインしていない状態

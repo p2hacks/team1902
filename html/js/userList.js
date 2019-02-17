@@ -1,26 +1,32 @@
-// ��ʃ��[�h��Ɏ��s
+// 画面ロード後に実行
 window.addEventListener("load", function(event) {
-	// �p�����[�^�̎擾
+	// パラメータの取得
 	var listID = getParam("listID");
-	var guestID = localStorage.setItem("guestID", JSON.stringify(obj_guestID));
+	var obj_listData = JSON.parse(localStorage.getItem("userList"));
+	if(obj_listData == null) return;
+	var userID_list = obj_listData[obj_listData.findIndex(({listID}) => listID === listID)];
+	var ls = null;
+	if("userID" in userID_list) ls = userID_list["userID"];
+	console.log(ls);
+	if(ls == null) return;
+
+	// 描画に必要なデータが有るかチェック
 	
-	// �`��ɕK�v�ȃf�[�^���L�邩�`�F�b�N
-	
-		// �Ȃ��Ȃ���ɂɍs��
+		// ないなら取りにに行く
 		
-		// ����Ȃ�`��
+		// あるなら描画
 });
 
-// �`�悷��֐��i�f�[�^���S��local Storage���ɂ��邱�Ƃ��O��j
+// 描画する関数（データが全てlocal Storage内にあることが前提）
 function display_userList(listID){
 	
 }
 
-// �f�[�^�������Ȃ���ɍs��
+// データが無いなら取りに行く
 function get_userList(listID){
-	// ���[�U�[ID�����ɍs���i�����local Storage���ɂ���͂��j
+	// ユーザーIDを取りに行く（これはlocal Storage内にあるはず）
 	
-	// ���[�U�[�f�[�^�����ɍs��
+	// ユーザーデータを取りに行く
 }
 
 
