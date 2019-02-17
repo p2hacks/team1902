@@ -1,9 +1,18 @@
 window.addEventListener("load", function(event) {
-	// �F�؃`�F�b�N
-	// - �F�؍ς݂Ȃ烆�[�U�y�[�W
-	// - ���F�؁A�F�ؐ؂�Ȃ烍�O�C���y�[�W
+	// 認証チェック
+	// - 認証済みならユーザページ
+	// - 未認証、認証切れならログインページ
+    if(!("guestKey" in localStorage)) {
+		var obj_guestKey = {
+			'userID': null,
+			'sessID': null
+		}
+		localStorage.setItem("guestKey", JSON.stringify(obj_guestKey));
+    }
+    var obj_guestKey = JSON.parse(localStorage.getItem("guestKey"));
 	
-	//if(�F�؍ς�) location.href = "./userPage.html";
-	
-	location.href = "./loginSelect.html";
+	get_chk(obj_guestKey["userID"], obj_guestKey["sessID"], function(res){
+		if(res == "true") location.href = "./userPage.html";
+		location.href = "./loginSelect.html";
+	});s
 });

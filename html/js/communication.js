@@ -33,6 +33,23 @@ function new_Account(mail, hpass, callback) {
     });
 }
 
+// リストを取りに行く
+function get_list(userID, sessID, callback) {
+    if(!userID) userID='null';
+    if(!sessID) sessID='null';
+    var data = {
+        'method':'get',
+        'want':'list',
+        'send':{'userID': userID, 'sessID': sessID}
+    }
+    sendjson(data, function(){
+        localStorage.removeItem("userList");
+        obj_userData = JSON.parse(this.response)["list"];
+        localStorage.setItem("userList", JSON.stringify([obj_userData]));
+        callback(this.response);
+    });
+}
+
 // ユーザーデータを取ってくる関数（ユーザーID）
 function get_userData(user_id, callback) {
     // ローカルストレージにデータがあるならサーバーに要求を送らない！
@@ -81,6 +98,53 @@ function login(mail, hpass, callback) {
         if(!("sessID" in tmp)) tmp["sessID"] = null;
         localStorage.clear();
         localStorage.setItem("guestKey", JSON.stringify(tmp));
+        callback(this.response);
+    });
+}
+
+// ログアウト
+function logout(userID, sessID, callback) {
+    if(!mail) mail='null';
+    if(!hpass) hpass='null';
+    var data = {
+        'method':'send',
+        'want':'logout',
+        'send':{'userID': userID, 'sessID': sessID}
+    }
+    sendjson(data, function(){
+        console.log(this.response);
+        callback(this.response);
+    });
+}
+
+// 位置情報をサーバーに送信する
+function send_pos(userID, sessID, posx, posy, callback) {
+    if(!posx) posx='null';
+    if(!posy) posy='null';
+    var data = {
+        'method':'send',
+        'want':'pos',
+        'send':{'posx': posx, 'posy': posy, 'userID': userID, 'sessID': sessID}
+    }
+    sendjson(data, function(){
+        console.log("send");
+        console.log(this.response);
+        callback(this.response);
+    });
+}
+
+// 認証済みかチェックする
+function get_chk(userID, sessID, allback) {
+    if(!userID) userID='null';
+    if(!sessID) sessID='null';
+    var data = {
+        'method':'get',
+        'want':'sessID',
+        'send':{'userID': userID, 'sessID': sessID}
+    }
+    sendjson(data, function(){
+        console.log("send");
+        console.log(this.response);
         callback(this.response);
     });
 }

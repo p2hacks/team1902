@@ -34,13 +34,27 @@ window.addEventListener("load", function(event) {
 		if(userID == null) {					// ログインしていない状態
 			
 		} else if(userID == display_userID) {	// 自分のページ
-			console.log("自分のペーじs");
 			document.getElementById("userPage_myPage").style = "display: block;";
 			document.getElementById("userPage_userList").style = "display: felx;";
 			
 		} else if(display_userID != null){		// 他の人のページ
 			document.getElementById("userPage_backButton").style = "display: block;";
 
+		}
+
+		// 位置情報の取得と送信
+		if(userID == display_userID != null) {
+			getPosition(function(res){
+				if(res["code"] == 0){
+					var guestData = JSON.parse(localStorage.getItem("guestKey"));
+					var userID = Number(guestData["userID"]);
+					var sessID = Number(guestData["sessID"]);
+					send_pos(userID, sessID, res["x"], res["y"], function(res){
+						console.log("aa");
+						console.log(res);
+					});
+				}
+			});
 		}
 	});
 });
